@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Registration')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <form class="user-form" action="#" th:action="@{/register}" th:object="${registrationData}" method="POST">
+        <h2 class="user-form-header">New user registration</h2>
+        <input type="text" th:field="*{login}" placeholder="Login" class="form-control mb-4 col-10"/>
+        <input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-10"/>
+        <button type="submit" class="btn btn-info col-2.5">Register</button>
+    </form>
+</div>
+</body>
+</html>
