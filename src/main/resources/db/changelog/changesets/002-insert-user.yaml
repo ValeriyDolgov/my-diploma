@@ -15,7 +15,7 @@ databaseChangeLog: #Password for all users is: 123
                   value: admin
               - column:
                   name: password
-                  value: $2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we
+                  value: '{bcrypt}$2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we'
               - column:
                   name: email
                   value: admin@exmaple.com
@@ -39,7 +39,7 @@ databaseChangeLog: #Password for all users is: 123
                   value: alice
               - column:
                   name: password
-                  value: $2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we
+                  value: '{bcrypt}$2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we'
               - column:
                   name: email
                   value: alice@example.com
@@ -63,7 +63,7 @@ databaseChangeLog: #Password for all users is: 123
                   value: bob
               - column:
                   name: password
-                  value: $2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we
+                  value: '{bcrypt}$2a$12$S50y77ozaw6ID0eoDtJgHuIllaI2tPgqqmnRDBjjQaMPK6Hegd8we'
               - column:
                   name: email
                   value: bob@example.com
