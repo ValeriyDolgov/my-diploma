@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('User profile deactivation')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1>User: <span th:text="${login}"></span></h1>
+    <form action="#"
+          th:action="@{/admin/users/{login}/deactivate (login=${login})}"
+          th:object="${deactivationData}"
+          method="post">
+        <label for="confirmation">
+            Confirmation <i>(enter: <span th:text="${login}"></span>)</i>
+        </label>
+        <input class="form-control mb-4 col-3" type="text" th:field="*{confirmation}" id="confirmation"
+               placeholder="Confirmation">
+        <p th:if="${confirmationMismatched}" class="warning">Entered data does not match login</p>
+        <input class="btn btn-lg btn-danger btn-block mb-4 col-sm-3" type="submit" value="Deactivate">
+        <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('User profile')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1>User details</h1>
+    <table class="table table-striped table-responsive-md table-bordered">
+        <thead>
+        <tr>
+            <th>User id</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Role</th>
+            <th>Isn't locked?</th>
+            <th>Isn't expired?</th>
+            <th>Is Enabled?</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.roles}"></td>
+            <td th:text="${user.accountNonLocked}"></td>
+            <td th:text="${user.accountNonExpired}"></td>
+            <td th:text="${user.enabled}"></td>
+            <td>
+                <a th:href="@{/admin/users/{login}/edit (login=${user.login})}"
+                   class="btn btn-lg badge-success btn-block col-sm-10 m-auto">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/users/{login}/deactivate (login=${user.login})}"
+       class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Deactivate this account</a>
+    <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+</div>
+</body>
+</html>
