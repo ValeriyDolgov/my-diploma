@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Moderate Article')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <form class="form-control mb-4" action="#"
+          th:action="@{/moderator/notModerated/{slug}/edit (slug=${article.slug})}"
+          th:object="${article}"
+          method="post">
+        <h2 class="form-signin-heading">Moderate article</h2>
+        <p>
+            <label for="title" class="sr-only">Check title of article</label>
+            <input class="form-control mb-4 col-10" type="text" th:field="*{title}" id="title" placeholder="Title">
+        </p>
+        <p>
+            <label for="description" class="sr-only">Check description</label>
+            <textarea class="form-control mb-4 col-10" type="text" th:field="*{description}" id="description"
+                      placeholder="Description"></textarea>
+        </p>
+        <p>
+            <label for="text" class="sr-only">Check text</label>
+            <textarea class="form-control mb-4 col-10" type="text" th:field="*{text}" id="text"
+                      placeholder="Text"></textarea>
+        </p>
+        <p>
+            <label for="collaborators" class="sr-only">Check collaborators</label>
+            <input class="form-control mb-4 col-10" type="text" th:field="*{collaborators}" id="collaborators"
+                   placeholder="Collaborators">
+        </p>
+        <p>
+            <label for="isModerated" class="sr-only">Ready to publish?</label>
+            <input class="checkbox" type="checkbox" th:field="*{isModerated}" id="isModerated">
+
+        </p>
+        <input class="btn-success btn-lg btn-primary btn-block mb-4 col-3" type="submit" value="Update"/>
+        <a th:href="@{/moderator/notModerated}" class="btn-danger btn-lg btn-primary btn-block mb-4 col-3">Return to
+            articles</a>
+    </form>
+</div>
+</body>
+</html>

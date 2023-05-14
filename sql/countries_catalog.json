@@ -1,0 +1,656 @@
+[
+  {
+    "countryName": "Россия"
+  },
+  {
+    "countryName": "Украина"
+  },
+  {
+    "countryName": "Абхазия"
+  },
+  {
+    "countryName": "Австралия"
+  },
+  {
+    "countryName": "Австрия"
+  },
+  {
+    "countryName": "Азербайджан"
+  },
+  {
+    "countryName": "Албания"
+  },
+  {
+    "countryName": "Алжир"
+  },
+  {
+    "countryName": "Ангола"
+  },
+  {
+    "countryName": "Ангуилья"
+  },
+  {
+    "countryName": "Андорра"
+  },
+  {
+    "countryName": "Антигуа и Барбуда"
+  },
+  {
+    "countryName": "Антильские о-ва"
+  },
+  {
+    "countryName": "Аргентина"
+  },
+  {
+    "countryName": "Армения"
+  },
+  {
+    "countryName": "Арулько"
+  },
+  {
+    "countryName": "Афганистан"
+  },
+  {
+    "countryName": "Багамские о-ва"
+  },
+  {
+    "countryName": "Бангладеш"
+  },
+  {
+    "countryName": "Барбадос"
+  },
+  {
+    "countryName": "Бахрейн"
+  },
+  {
+    "countryName": "Беларусь"
+  },
+  {
+    "countryName": "Белиз"
+  },
+  {
+    "countryName": "Бельгия"
+  },
+  {
+    "countryName": "Бенин"
+  },
+  {
+    "countryName": "Бермуды"
+  },
+  {
+    "countryName": "Болгария"
+  },
+  {
+    "countryName": "Боливия"
+  },
+  {
+    "countryName": "Босния/Герцеговина"
+  },
+  {
+    "countryName": "Ботсвана"
+  },
+  {
+    "countryName": "Бразилия"
+  },
+  {
+    "countryName": "Британские Виргинские о-ва"
+  },
+  {
+    "countryName": "Бруней"
+  },
+  {
+    "countryName": "Буркина Фасо"
+  },
+  {
+    "countryName": "Бурунди"
+  },
+  {
+    "countryName": "Бутан"
+  },
+  {
+    "countryName": "Валлис и Футуна о-ва"
+  },
+  {
+    "countryName": "Вануату"
+  },
+  {
+    "countryName": "Великобритания"
+  },
+  {
+    "countryName": "Венгрия"
+  },
+  {
+    "countryName": "Венесуэла"
+  },
+  {
+    "countryName": "Восточный Тимор"
+  },
+  {
+    "countryName": "Вьетнам"
+  },
+  {
+    "countryName": "Габон"
+  },
+  {
+    "countryName": "Гаити"
+  },
+  {
+    "countryName": "Гайана"
+  },
+  {
+    "countryName": "Гамбия"
+  },
+  {
+    "countryName": "Гана"
+  },
+  {
+    "countryName": "Гваделупа"
+  },
+  {
+    "countryName": "Гватемала"
+  },
+  {
+    "countryName": "Гвинея"
+  },
+  {
+    "countryName": "Гвинея-Бисау"
+  },
+  {
+    "countryName": "Германия"
+  },
+  {
+    "countryName": "Гернси о-в"
+  },
+  {
+    "countryName": "Гибралтар"
+  },
+  {
+    "countryName": "Гондурас"
+  },
+  {
+    "countryName": "Гонконг"
+  },
+  {
+    "countryName": "Гренада"
+  },
+  {
+    "countryName": "Гренландия"
+  },
+  {
+    "countryName": "Греция"
+  },
+  {
+    "countryName": "Грузия"
+  },
+  {
+    "countryName": "Дания"
+  },
+  {
+    "countryName": "Джерси о-в"
+  },
+  {
+    "countryName": "Джибути"
+  },
+  {
+    "countryName": "Доминиканская республика"
+  },
+  {
+    "countryName": "Египет"
+  },
+  {
+    "countryName": "Замбия"
+  },
+  {
+    "countryName": "Западная Сахара"
+  },
+  {
+    "countryName": "Зимбабве"
+  },
+  {
+    "countryName": "Израиль"
+  },
+  {
+    "countryName": "Индия"
+  },
+  {
+    "countryName": "Индонезия"
+  },
+  {
+    "countryName": "Иордания"
+  },
+  {
+    "countryName": "Ирак"
+  },
+  {
+    "countryName": "Иран"
+  },
+  {
+    "countryName": "Ирландия"
+  },
+  {
+    "countryName": "Исландия"
+  },
+  {
+    "countryName": "Испания"
+  },
+  {
+    "countryName": "Италия"
+  },
+  {
+    "countryName": "Йемен"
+  },
+  {
+    "countryName": "Кабо-Верде"
+  },
+  {
+    "countryName": "Казахстан"
+  },
+  {
+    "countryName": "Камбоджа"
+  },
+  {
+    "countryName": "Камерун"
+  },
+  {
+    "countryName": "Канада"
+  },
+  {
+    "countryName": "Катар"
+  },
+  {
+    "countryName": "Кения"
+  },
+  {
+    "countryName": "Кипр"
+  },
+  {
+    "countryName": "Кирибати"
+  },
+  {
+    "countryName": "Китай"
+  },
+  {
+    "countryName": "Колумбия"
+  },
+  {
+    "countryName": "Коморские о-ва"
+  },
+  {
+    "countryName": "Конго (Brazzaville)"
+  },
+  {
+    "countryName": "Конго (Kinshasa)"
+  },
+  {
+    "countryName": "Коста-Рика"
+  },
+  {
+    "countryName": "Кот-д''Ивуар"
+  },
+  {
+    "countryName": "Куба"
+  },
+  {
+    "countryName": "Кувейт"
+  },
+  {
+    "countryName": "Кука о-ва"
+  },
+  {
+    "countryName": "Кыргызстан"
+  },
+  {
+    "countryName": "Лаос"
+  },
+  {
+    "countryName": "Латвия"
+  },
+  {
+    "countryName": "Лесото"
+  },
+  {
+    "countryName": "Либерия"
+  },
+  {
+    "countryName": "Ливан"
+  },
+  {
+    "countryName": "Ливия"
+  },
+  {
+    "countryName": "Литва"
+  },
+  {
+    "countryName": "Лихтенштейн"
+  },
+  {
+    "countryName": "Люксембург"
+  },
+  {
+    "countryName": "Маврикий"
+  },
+  {
+    "countryName": "Мавритания"
+  },
+  {
+    "countryName": "Мадагаскар"
+  },
+  {
+    "countryName": "Македония"
+  },
+  {
+    "countryName": "Малави"
+  },
+  {
+    "countryName": "Малайзия"
+  },
+  {
+    "countryName": "Мали"
+  },
+  {
+    "countryName": "Мальдивские о-ва"
+  },
+  {
+    "countryName": "Мальта"
+  },
+  {
+    "countryName": "Мартиника о-в"
+  },
+  {
+    "countryName": "Мексика"
+  },
+  {
+    "countryName": "Мозамбик"
+  },
+  {
+    "countryName": "Молдова"
+  },
+  {
+    "countryName": "Монако"
+  },
+  {
+    "countryName": "Монголия"
+  },
+  {
+    "countryName": "Марокко"
+  },
+  {
+    "countryName": "Мьянма (Бирма)"
+  },
+  {
+    "countryName": "Мэн о-в"
+  },
+  {
+    "countryName": "Намибия"
+  },
+  {
+    "countryName": "Науру"
+  },
+  {
+    "countryName": "Непал"
+  },
+  {
+    "countryName": "Нигер"
+  },
+  {
+    "countryName": "Нигерия"
+  },
+  {
+    "countryName": "Нидерланды (Голландия)"
+  },
+  {
+    "countryName": "Никарагуа"
+  },
+  {
+    "countryName": "Новая Зеландия"
+  },
+  {
+    "countryName": "Новая Каледония о-в"
+  },
+  {
+    "countryName": "Норвегия"
+  },
+  {
+    "countryName": "Норфолк о-в"
+  },
+  {
+    "countryName": "О.А.Э."
+  },
+  {
+    "countryName": "Оман"
+  },
+  {
+    "countryName": "Пакистан"
+  },
+  {
+    "countryName": "Панама"
+  },
+  {
+    "countryName": "Папуа Новая Гвинея"
+  },
+  {
+    "countryName": "Парагвай"
+  },
+  {
+    "countryName": "Перу"
+  },
+  {
+    "countryName": "Питкэрн о-в"
+  },
+  {
+    "countryName": "Польша"
+  },
+  {
+    "countryName": "Португалия"
+  },
+  {
+    "countryName": "Пуэрто Рико"
+  },
+  {
+    "countryName": "Реюньон"
+  },
+  {
+    "countryName": "Руанда"
+  },
+  {
+    "countryName": "Румыния"
+  },
+  {
+    "countryName": "США"
+  },
+  {
+    "countryName": "Сальвадор"
+  },
+  {
+    "countryName": "Самоа"
+  },
+  {
+    "countryName": "Сан-Марино"
+  },
+  {
+    "countryName": "Сан-Томе и Принсипи"
+  },
+  {
+    "countryName": "Саудовская Аравия"
+  },
+  {
+    "countryName": "Свазиленд"
+  },
+  {
+    "countryName": "Святая Люсия"
+  },
+  {
+    "countryName": "Святой Елены о-в"
+  },
+  {
+    "countryName": "Северная Корея"
+  },
+  {
+    "countryName": "Сейшеллы"
+  },
+  {
+    "countryName": "Сен-Пьер и Микелон"
+  },
+  {
+    "countryName": "Сенегал"
+  },
+  {
+    "countryName": "Сент Китс и Невис"
+  },
+  {
+    "countryName": "Сент-Винсент и Гренадины"
+  },
+  {
+    "countryName": "Сербия"
+  },
+  {
+    "countryName": "Сингапур"
+  },
+  {
+    "countryName": "Сирия"
+  },
+  {
+    "countryName": "Словакия"
+  },
+  {
+    "countryName": "Словения"
+  },
+  {
+    "countryName": "Соломоновы о-ва"
+  },
+  {
+    "countryName": "Сомали"
+  },
+  {
+    "countryName": "Судан"
+  },
+  {
+    "countryName": "Суринам"
+  },
+  {
+    "countryName": "Сьерра-Леоне"
+  },
+  {
+    "countryName": "Таджикистан"
+  },
+  {
+    "countryName": "Тайвань"
+  },
+  {
+    "countryName": "Таиланд"
+  },
+  {
+    "countryName": "Танзания"
+  },
+  {
+    "countryName": "Того"
+  },
+  {
+    "countryName": "Токелау о-ва"
+  },
+  {
+    "countryName": "Тонга"
+  },
+  {
+    "countryName": "Тринидад и Тобаго"
+  },
+  {
+    "countryName": "Тувалу"
+  },
+  {
+    "countryName": "Тунис"
+  },
+  {
+    "countryName": "Туркменистан"
+  },
+  {
+    "countryName": "Туркс и Кейкос"
+  },
+  {
+    "countryName": "Турция"
+  },
+  {
+    "countryName": "Уганда"
+  },
+  {
+    "countryName": "Узбекистан"
+  },
+  {
+    "countryName": "Уругвай"
+  },
+  {
+    "countryName": "Фарерские о-ва"
+  },
+  {
+    "countryName": "Фиджи"
+  },
+  {
+    "countryName": "Филиппины"
+  },
+  {
+    "countryName": "Финляндия"
+  },
+  {
+    "countryName": "Франция"
+  },
+  {
+    "countryName": "Французская Гвинея"
+  },
+  {
+    "countryName": "Французская Полинезия"
+  },
+  {
+    "countryName": "Хорватия"
+  },
+  {
+    "countryName": "Чад"
+  },
+  {
+    "countryName": "Черногория"
+  },
+  {
+    "countryName": "Чехия"
+  },
+  {
+    "countryName": "Чили"
+  },
+  {
+    "countryName": "Швейцария"
+  },
+  {
+    "countryName": "Швеция"
+  },
+  {
+    "countryName": "Шри-Ланка"
+  },
+  {
+    "countryName": "Эквадор"
+  },
+  {
+    "countryName": "Экваториальная Гвинея"
+  },
+  {
+    "countryName": "Эритрея"
+  },
+  {
+    "countryName": "Эстония"
+  },
+  {
+    "countryName": "Эфиопия"
+  },
+  {
+    "countryName": "ЮАР"
+  },
+  {
+    "countryName": "Южная Корея"
+  },
+  {
+    "countryName": "Южная Осетия"
+  },
+  {
+    "countryName": "Ямайка"
+  },
+  {
+    "countryName": "Япония"
+  }
+]

@@ -1,5 +1,6 @@
 package com.example.app.configs;
 
+import com.github.slugify.Slugify;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -9,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -33,13 +32,23 @@ public class SecurityConfig {
                         .failureUrl("/login-error")
                         .defaultSuccessUrl("/")
                         .permitAll())
+                .rememberMe()
+                .tokenValiditySeconds(5 * 24 * 60 * 60)
+                .key("AbcdefghiJklmNoPqRstUvXyz")
+                .and()
                 .logout()
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID", "remember-me");
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public Slugify slugify() {
+        return Slugify.builder().build();
     }
 }

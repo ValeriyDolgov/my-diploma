@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Edit user profile')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <form class="user-form" action="#" th:action="@{/user/profile/edit}" th:object="${user}" method="post">
+        <h1 class="user-form-header m-auto">Edit user profile: <span th:text="${user.email}"></span></h1>
+
+        <label for="surname">
+            Surname
+        </label>
+        <input class="form-control mb-4 col-10" type="text" th:field="*{surname}" id="surname" placeholder="Your surname">
+
+        <label for="name">
+            Name
+        </label>
+        <input class="form-control mb-4 col-10" type="text" th:field="*{name}" id="name" placeholder="Your name">
+
+        <label for="patronymic">
+            Patronymic
+        </label>
+        <input class="form-control mb-4 col-10" type="text" th:field="*{patronymic}" id="patronymic" placeholder="Your patronymic">
+
+        <label for="birthday">
+            Birthday
+        </label>
+        <input class="form-control mb-4 col-10" type="date" th:field="*{birthday}" id="birthday" placeholder="Your birthday">
+
+        <label for="password">
+            Password <br/>
+            <i>(leave blank to keep it unchanged)</i>
+        </label>
+        <input class="form-control mb-4 col-10" type="text" th:field="*{password}" id="password" placeholder="Password">
+
+        <input class="btn btn-lg badge-success btn-block col-sm-10" type="submit" value="Update">
+
+        <a th:href="@{/user}" class="btn btn-lg btn-primary btn-block mb-4 col-10">Return to Main page</a>
+    </form>
+</div>
+</body>
+</html>

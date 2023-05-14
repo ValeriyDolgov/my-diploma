@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('New Article')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/article/new}" method="POST" class="form-control mb-4">
+        <h2 class="form-signin-heading">Create new article</h2>
+        <p>
+            <label for="title" class="sr-only">Enter title of article</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Title of article" required
+                   autofocus="autofocus"/> <br/>
+        </p>
+        <p>
+            <label for="description" class="sr-only">Enter description</label>
+            <input type="text" id="description" name="description" class="form-control" placeholder="Description"
+                   required/> <br/>
+        </p>
+        <p>
+            <label for="text" class="sr-only">Enter text</label>
+            <textarea type="text" id="text" name="text" class="form-control" placeholder="Text"
+                      required></textarea> <br/>
+        </p>
+        <p>
+            <label for="collaborators" class="sr-only">Enter collaborators</label>
+            <input type="text" id="collaborators" name="collaborators" class="form-control"
+                   placeholder="Collaborators" required/> <br/>
+        </p>
+        <input class="btn-success btn-lg btn-primary btn-block mb-4 col-3" type="submit" value="Create"/>
+        <a th:href="@{/user}" class="btn-danger btn-lg btn-primary btn-block mb-4 col-3">Return to main page</a>
+    </form>
+</div>
+</body>
+</html>

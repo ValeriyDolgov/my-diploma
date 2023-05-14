@@ -1,7 +1,7 @@
 package com.example.app.controller;
 
-import com.example.app.controller.dto.RegistrationData;
 import com.example.app.service.UserService;
+import com.example.app.service.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,14 +29,14 @@ public class RegistrationController {
 
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
-		RegistrationData registrationData = new RegistrationData();
-		model.addAttribute("registrationData", registrationData);
+		RegisterRequest registerRequest = new RegisterRequest();
+		model.addAttribute("registrationData", registerRequest);
 		return "registration";
 	}
 
 	@PostMapping("/register")
-	public String register(@ModelAttribute RegistrationData dto) {
-		userService.registerNewUser(dto.getLogin(), dto.getPassword());
+	public String register(@ModelAttribute RegisterRequest registerRequest) {
+		userService.registerNewUser(registerRequest);
 		return "redirect:/login";
 	}
 }

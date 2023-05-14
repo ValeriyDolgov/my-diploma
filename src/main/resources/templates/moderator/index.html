@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Main page')}">
+  <title></title>
+</head>
+<body>
+<div class="container">
+  <h1>
+    Hello: <span th:text="${#authentication.principal.username}"></span>. Have a nice day!
+  </h1>
+  <p>
+    <a th:href="@{/moderator/notModerated}"
+       class="btn btn-lg btn-primary btn-block mb-4 col-sm-3">Show list of not moderated articles</a>
+  </p>
+  <form th:action="@{/logout}" method="POST">
+    <input class="btn btn-lg btn-danger btn-block mb-4 col-sm-3" type="submit" value="Logout"/>
+  </form>
+</div>
+</body>
+</html>

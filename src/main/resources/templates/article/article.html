@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Article')}">
+    <title th:text="${article.title}"></title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1 th:text="${article.title}"></h1>
+    <p class="text-lg-left" th:utext="${article.text}"></p>
+    <div> Author:
+        <a th:href="@{/user/{email} (email=${article.author.email})}" th:text="${article.author.email}"></a>
+        <p></p>
+    </div>
+    <div>
+        Collaborators:
+        <a th:text="${article.collaborators}"></a>
+        <p></p>
+    </div>
+    <div>
+        Date of creation:
+        <a th:text="${article.dateOfCreation}"></a>
+    </div>
+    <div>
+        Date of update:
+        <a th:text="${article.dateOfUpdate}"></a>
+    </div>
+</div>
+</body>
+</html>

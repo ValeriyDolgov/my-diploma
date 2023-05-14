@@ -14,8 +14,11 @@ public class HomeController {
 			return "redirect:/login";
 		} else if (authentication.getAuthorities().contains(Role.ADMIN)) {
 			return "redirect:/admin";
-		} else {
-			return "redirect:/profile";
+		} else if (authentication.getAuthorities().contains(Role.MODERATOR)) {
+		return "redirect:/moderator";
+	}
+		else {
+			return "redirect:/user";
 		}
 	}
 }
