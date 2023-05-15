@@ -44,6 +44,32 @@ public class ModeratorController {
                 .collaborators(article.getCollaborators())
                 .isModerated(true)
                 .build());
-        return "redirect:/moderator/notModerated";
+        return "redirect:/moderator/moderated/{slug}/publish";
+    }
+
+    @GetMapping("/moderated")
+    public String showModeratedArticles(Model model) {
+        var listOfModeratedArticles = articleService.showModeratedAndNotPublishedArticles();
+        model.addAttribute("listOfArticles", listOfModeratedArticles);
+        model.addAttribute("numberOfArticles", listOfModeratedArticles.size());
+        return "moderator/moderated-list";
+    }
+
+    @GetMapping("/moderated/{slug}/publish")
+    public String checkArticleBeforePublish(@PathVariable String slug, Model model) {
+        model.addAttribute("article", articleService.getBySlug(slug));
+        return "moderator/check-article";
+    }
+
+    @PostMapping("/moderated/{slug}/publish")
+    public String publishArticle(@PathVariable String slug) {
+        articleService.publishArticle(slug);
+        return "redirect:/moderator/moderated";
+    }
+
+    @PostMapping("/moderated/{slug}/return")
+    public String returnArticleToEditing(@PathVariable String slug) {
+        articleService.returnArticleToModerating(slug);
+        return "redirect:/moderator/notModerated/{slug}/edit";
     }
 }

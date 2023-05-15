@@ -5,7 +5,6 @@ import com.example.app.service.dto.ArticleRequest;
 import com.example.app.service.dto.RegisterRequest;
 import com.github.slugify.Slugify;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class MappingUtils {
                 .email(registerRequest.getEmail())
                 .birthday(registerRequest.getBirthday())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .sex(null)
+                .sex(String.valueOf(registerRequest.getGender()))
                 .resetPasswordToken(null)
                 .isCEO(false)
                 .roles(Set.of(Role.EMPLOYEE))
@@ -75,6 +74,7 @@ public class MappingUtils {
                 .author(null)
                 .collaborators(request.getCollaborators())
                 .isModerated(false)
+                .isPublished(false)
                 .build();
     }
 }

@@ -34,7 +34,7 @@ public class ArticleController {
 
     @GetMapping("/all")
     public String showOnlyModeratedArticles(Model model) {
-        model.addAttribute("listOfArticles", articleService.showModeratedArticles());
+        model.addAttribute("listOfArticles", articleService.showPublishedArticles());
         return "article/moderated-list";
     }
 

@@ -10,10 +10,17 @@
         <thead>
         <tr>
             <th>User id</th>
-            <th>Login</th>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>Patronymic</th>
             <th>Email</th>
-            <th>Phone number</th>
+            <th>Birthday</th>
+            <th>Sex</th>
             <th>Role</th>
+            <th>Date of creation</th>
+            <th>Phone number</th>
+            <th>Telegram account</th>
+            <th>Skype account</th>
             <th>Isn't locked?</th>
             <th>Isn't expired?</th>
             <th>Is Enabled?</th>
@@ -23,21 +30,28 @@
         <tbody>
         <tr>
             <td th:text="${user.id}"></td>
-            <td th:text="${user.login}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.patronymic}"></td>
             <td th:text="${user.email}"></td>
-            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.birthday}"></td>
+            <td th:text="${user.sex}"></td>
             <td th:text="${user.roles}"></td>
+            <td th:text="${user.employee.dateOfCreation}"></td>
+            <td th:text="${user.employee.contactInfo.personalNumber}"></td>
+            <td th:text="${user.employee.contactInfo.telegramAccount}"></td>
+            <td th:text="${user.employee.contactInfo.skypeAccount}"></td>
             <td th:text="${user.accountNonLocked}"></td>
             <td th:text="${user.accountNonExpired}"></td>
             <td th:text="${user.enabled}"></td>
             <td>
-                <a th:href="@{/admin/users/{login}/edit (login=${user.login})}"
+                <a th:href="@{/admin/users/{email}/edit (email=${user.email})}"
                    class="btn btn-lg badge-success btn-block col-sm-10 m-auto">Edit</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin/users/{login}/deactivate (login=${user.login})}"
+    <a th:href="@{/admin/users/{email}/deactivate (login=${user.email})}"
        class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Deactivate this account</a>
     <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
 </div>

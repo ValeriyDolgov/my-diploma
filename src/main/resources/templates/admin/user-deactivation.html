@@ -5,13 +5,13 @@
 </head>
 <body>
 <div class="container">
-    <h1>User: <span th:text="${login}"></span></h1>
+    <h1>User: <span th:text="${email}"></span></h1>
     <form action="#"
-          th:action="@{/admin/users/{login}/deactivate (login=${login})}"
+          th:action="@{/admin/users/{email}/deactivate (email=${email})}"
           th:object="${deactivationData}"
           method="post">
         <label for="confirmation">
-            Confirmation <i>(enter: <span th:text="${login}"></span>)</i>
+            Confirmation <i>(enter: <span th:text="${email}"></span>)</i>
         </label>
         <input class="form-control mb-4 col-3" type="text" th:field="*{confirmation}" id="confirmation"
                placeholder="Confirmation">

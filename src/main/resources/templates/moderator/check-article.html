@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Article')}">
+    <title th:text="${article.title}"></title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1 th:text="${article.title}"></h1>
+    <p class="text-lg-left" th:utext="${article.text}"></p>
+    <div>
+        Collaborators:
+        <a th:text="${article.collaborators}"></a>
+        <p></p>
+    </div>
+    <form th:action="@{/moderator/moderated/{slug}/publish (slug=${article.slug})}" method="POST">
+        <input class="btn btn-lg btn-success btn-block mb-4 col-sm-3" type="submit" value="Publish this article"/>
+    </form>
+    <form th:action="@{/moderator/moderated/{slug}/return (slug=${article.slug})}" method="POST">
+        <input class="btn btn-lg btn-danger btn-block mb-4 col-sm-3" type="submit" value="Return to editing article"/>
+    </form>
+</div>
+</body>
+</html>

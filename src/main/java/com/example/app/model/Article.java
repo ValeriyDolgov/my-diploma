@@ -39,4 +39,6 @@ public class Article {
     private String collaborators;
     @Column(name = "is_moderated")
     private Boolean isModerated;
+    @Column(name = "is_published")
+    private Boolean isPublished;
 }

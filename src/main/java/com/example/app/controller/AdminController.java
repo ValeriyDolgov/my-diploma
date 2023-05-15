@@ -29,24 +29,29 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GetMapping("/users/{login}")
-    public String showUser(@PathVariable String login, Model model) {
-        model.addAttribute("user", userService.getByEmail(login));
+    @GetMapping("/users/{email}")
+    public String showUser(@PathVariable String email, Model model) {
+        User user = userService.getByEmail(email);
+//        Employee employee = user.getEmployee();
+//        ContactInfo contactInfo = employee.getContactInfo();
+        model.addAttribute("user", user);
+//        model.addAttribute("employee", employee);
+//        model.addAttribute("contactInfo", contactInfo);
         return "admin/user";
     }
 
 
-    @GetMapping("/users/{login}/edit")
-    public String showEditUserForm(@PathVariable String login, Model model) {
-        var user = userService.getByEmail(login);
+    @GetMapping("/users/{email}/edit")
+    public String showEditUserForm(@PathVariable String email, Model model) {
+        var user = userService.getByEmail(email);
         user.setPassword(null);
         model.addAttribute("user", user);
         return "admin/edit-user";
     }
 
-    @PostMapping("/users/{login}/edit")
-    public String updatedUser(@PathVariable String login, @ModelAttribute User user) {
-        userService.updateUser(login, UpdateUserRequest.builder()
+    @PostMapping("/users/{email}/edit")
+    public String updatedUser(@PathVariable String email, @ModelAttribute User user) {
+        userService.updateUser(email, UpdateUserRequest.builder()
                 .surname(user.getSurname())
                 .name(user.getName())
                 .patronymic(user.getPatronymic())
@@ -56,19 +61,19 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/users/{login}/deactivate")
-    public String deactivateUserProfile(@PathVariable String login, Model model) {
-        model.addAttribute("login", login);
+    @GetMapping("/users/{email}/deactivate")
+    public String deactivateUserProfile(@PathVariable String email, Model model) {
+        model.addAttribute("email", email);
         model.addAttribute("confirmationMismatched", false);
         model.addAttribute("deactivationData", new DeactivationData());
         return "admin/user-deactivation";
     }
 
-    @PostMapping("/users/{login}/deactivate")
-    public String deactivateAccountByUser(@PathVariable String login,
+    @PostMapping("/users/{email}/deactivate")
+    public String deactivateAccountByUser(@PathVariable String email,
                                           @ModelAttribute DeactivationData deactivationData,
                                           Model model) {
-        if (!userService.deactivateAccount(login, deactivationData.getConfirmation())) {
+        if (!userService.deactivateAccount(email, deactivationData.getConfirmation())) {
             model.addAttribute("confirmationMismatched", true);
             return "admin/user-deactivation";
         }

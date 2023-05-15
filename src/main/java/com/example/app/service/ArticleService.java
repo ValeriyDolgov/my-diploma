@@ -31,8 +31,8 @@ public class ArticleService {
         }
     }
 
-    public List<Article> showModeratedArticles() {
-        return articleRepository.findAllByIsModeratedIsTrue();
+    public List<Article> showPublishedArticles() {
+        return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
     }
 
     public List<Article> showModeratedArticlesByQuery(String query) {
@@ -40,7 +40,11 @@ public class ArticleService {
     }
 
     public List<Article> showNotModeratedArticles() {
-        return articleRepository.findAllByIsModeratedIsFalse();
+        return articleRepository.findAllByIsModeratedIsFalseAndIsPublishedIsFalse();
+    }
+
+    public List<Article> showModeratedAndNotPublishedArticles() {
+        return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsFalse();
     }
 
     public Article getBySlug(String slug) {
@@ -56,6 +60,21 @@ public class ArticleService {
         article.setCollaborators(request.getCollaborators());
         article.setDateOfUpdate(LocalDate.now());
         article.setIsModerated(request.getIsModerated());
+        articleRepository.save(article);
+        return article;
+    }
+
+    public Article publishArticle(String slug) {
+        var article = getBySlug(slug);
+        article.setIsPublished(true);
+        articleRepository.save(article);
+        return article;
+    }
+
+    public Article returnArticleToModerating(String slug) {
+        var article = getBySlug(slug);
+        article.setIsModerated(false);
+        article.setIsPublished(false);
         articleRepository.save(article);
         return article;
     }

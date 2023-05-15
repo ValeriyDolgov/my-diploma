@@ -14,4 +14,5 @@ public class UpdateArticleRequest {
     private String collaborators;
     private String dateOfUpdate;
     private Boolean isModerated;
+    private Boolean isPublished;
 }

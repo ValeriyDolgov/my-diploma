@@ -9,7 +9,7 @@
         User: <span th:text="${#authentication.principal.username}"></span>
     </h1>
     <p>
-        <a th:href="@{/admin/users/{login} (login=${#authentication.principal.username})}"
+        <a th:href="@{/admin/users/{email} (email=${#authentication.principal.username})}"
            class="btn btn-lg btn-primary btn-block mb-4 col-sm-3">Show profile</a>
     </p>
     <p>

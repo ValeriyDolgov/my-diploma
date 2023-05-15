@@ -15,6 +15,10 @@
             <th>Email</th>
             <th>Birthday</th>
             <th>Sex</th>
+            <th>Date of creation</th>
+            <th>Phone number</th>
+            <th>Telegram account</th>
+            <th>Skype account</th>
             <th>Edit</th>
         </tr>
         </thead>
@@ -26,6 +30,10 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.birthday}"></td>
             <td th:text="${user.sex}"></td>
+            <td th:text="${user.employee.dateOfCreation}"></td>
+            <td th:text="${user.employee.contactInfo.personalNumber}"></td>
+            <td th:text="${user.employee.contactInfo.telegramAccount}"></td>
+            <td th:text="${user.employee.contactInfo.skypeAccount}"></td>
             <td>
                 <a th:href="@{/user/profile/edit}"
                    class="btn btn-lg badge-success btn-block col-sm-10 m-auto">Edit</a>

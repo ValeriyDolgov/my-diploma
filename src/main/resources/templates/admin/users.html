@@ -10,7 +10,6 @@
         <thead>
         <tr>
             <th>UserId</th>
-            <th>Login</th>
             <th>Email</th>
             <th>PhoneNumber</th>
             <th>Role</th>
@@ -21,13 +20,12 @@
         <tbody>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}"></td>
-            <td><a th:href="@{/admin/users/{login} (login=${user.login})}" th:text="${user.login}"></a></td>
+            <td><a th:href="@{/admin/users/{email} (email=${user.email})}" th:text="${user.email}"></a></td>
             <td th:text="${user.email}"></td>
-            <td th:text="${user.phoneNumber}"></td>
             <td th:text="${user.roles}"></td>
             <td th:text="${user.enabled}"></td>
             <td>
-                <a th:href="@{/admin/users/{login}/edit (login=${user.login})}"
+                <a th:href="@{/admin/users/{email}/edit (email=${user.email})}"
                    class="btn btn-lg badge-success btn-block col-sm-10 m-auto">
                     Edit
                 </a>
@@ -35,7 +33,7 @@
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+    <a th:href="@{/admin}" class="btn-danger btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
 </div>
 </body>
 </html>

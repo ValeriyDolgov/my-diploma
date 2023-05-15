@@ -51,6 +51,7 @@ public class UserController {
     @GetMapping("/profile/edit")
     public String showEditProfileForm(Authentication authentication, Model model) {
         var user = userService.getByEmail(authentication.getName());
+        user.setBirthday(null);
         user.setPassword(null);
         model.addAttribute("user", user);
         return "user/edit-profile";
