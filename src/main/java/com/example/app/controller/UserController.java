@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("/workerTree")
     public String showWorkerTree(){
-        return "user/workerTree";
+        return "workerTree";
     }
 
     @GetMapping("/all")

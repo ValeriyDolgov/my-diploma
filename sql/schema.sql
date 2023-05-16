@@ -155,7 +155,7 @@ CREATE TABLE "article"
     "user_id"          bigint,
     "collaborators"    varchar(255),
     "is_moderated"     boolean,
-    "is_published"       boolean
+    "is_published"     boolean
 );
 
 CREATE TABLE "employee_skill"

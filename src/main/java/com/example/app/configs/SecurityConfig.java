@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .csrf()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/register", "/css/**").permitAll()
+                .requestMatchers("/", "/register", "/css/**", "/user/assets/**", "/user/webjars/**", "/assets/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(formLogin -> formLogin
