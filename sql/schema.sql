@@ -52,7 +52,8 @@ CREATE TABLE "employee"
     "date_of_update"       timestamp,
     "is_on_remote"         boolean,
     "note"                 text,
-    "timezone"             varchar
+    "timezone"             varchar,
+    "position"             varchar(2048)
 );
 
 CREATE TABLE "position"

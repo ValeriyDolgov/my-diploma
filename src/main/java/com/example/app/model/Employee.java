@@ -43,4 +43,7 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private User user;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "position")
+    private Position position;
 }

@@ -55,7 +55,6 @@ public class AdminController {
                 .surname(user.getSurname())
                 .name(user.getName())
                 .patronymic(user.getPatronymic())
-                .birthday(user.getBirthday())
                 .password(user.getPassword())
                 .build());
         return "redirect:/admin/users";

@@ -25,6 +25,11 @@ public class UserController {
         return "user/index";
     }
 
+    @GetMapping("/workerTree")
+    public String showWorkerTree(){
+        return "user/workerTree";
+    }
+
     @GetMapping("/all")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.findAllUsers());
@@ -63,7 +68,6 @@ public class UserController {
                 .surname(user.getSurname())
                 .name(user.getName())
                 .patronymic(user.getPatronymic())
-                .birthday(user.getBirthday())
                 .password(user.getPassword())
                 .build());
         return "redirect:/user/profile";
