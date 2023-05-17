@@ -1,93 +1,64 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments.html :: head ('Users')">
-    <title></title>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Google Charts Example - Spring Boot</title>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1> List of all users </h1>
-    <table class="table table-striped table-responsive-md table-bordered">
-        <thead>
-        <tr>
-            <th>User email</th>
-            <th>NumberOfArticles</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="top : ${list}">
-            <td><a th:href="@{/user/{email} (email=${top.email})}" th:text="${top.email}"></a></td>
-            <td th:text="${top.numberOfArticles}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/user}" class="btn-danger btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
-    <script type="module" th:inline="javascript" src="https://code.highcharts.com/highcharts.js">
-        import Highcharts from 'https://code.highcharts.com/es-modules/masters/highcharts.src.js';
-        import 'https://code.highcharts.com/es-modules/masters/modules/accessibility.src.js';
-        // this simply wraps the code in a function
-        // that waits for the DOM to be ready:
-        (function () {
-
-            // this is populated by Thymeleaf:
-            var pieChartData = [
-                {"catName": "Humanities", "catCount": 123},
-                {"catName": "Sciences", "catCount": 145},
-                {"catName": "Other", "catCount": 67}
-            ];
-
-            var series = [];
-            var data = [];
-
-            for (var i = 0; i < pieChartData.length; i++) {
-                var object = {};
-                object.name = pieChartData[i].catName.toUpperCase();
-                object.y = pieChartData[i].catCount;
-                data.push(object);
-            }
-            var seriesObject = {
-                name: 'Course By Category',
-                colorByPoint: true,
-                data: data
-            };
-            series.push(seriesObject);
-            drawPieChart(series);
-
-            // draw the pie chart:
-            function drawPieChart(series) {
-                Highcharts.chart('chartContainer', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Your Heading Goes Here'
-                    },
-                    tooltip: {
-                        formatter: function () {
-                            return this.key + ':' + this.y;
-                        }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.name}: {point.y}'
-                            }
-                        }
-                    },
-                    // use the series data defined earlier:
-                    series: series
-                });
-            }
-
-        })();
-
-    </script>
+<div align="center" style="width: 1000px;">
+    <h2>Spring Boot Google Charts Example</h2>
+    <div id="chart_div"></div>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>
-
+<script th:inline="javascript">
+    var real_data = [[${chartData}]];
+    $(document).ready(function() {
+        google.charts.load('current', {
+            packages : [ 'corechart', 'bar' ]
+        });
+        google.charts.setOnLoadCallback(drawColumnChart);
+        google.charts.setOnLoadCallback(drawPieChart);
+    });
+    function drawColumnChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'User');
+        data.addColumn('number', 'Articles');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        var options = {
+            title : 'Blog stats',
+            hAxis : {
+                title : 'Users',
+            },
+            vAxis : {
+                title : 'Articles count'
+            }
+        };
+        var chart = new google.visualization.ColumnChart(document
+            .getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    function drawPieChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'User');
+        data.addColumn('number', 'Articles');
+        Object.keys(real_data).forEach(function(key) {
+            data.addRow([ key, real_data[key] ]);
+        });
+        var options = {
+            title : 'Blog stats'
+        };
+        var chart = new google.visualization.PieChart(document
+            .getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>
 </body>
 </html>

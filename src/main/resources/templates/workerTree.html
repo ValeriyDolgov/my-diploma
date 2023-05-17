@@ -73,7 +73,7 @@
             "dataType": "json",
             "success": function (data) {
                 $.each(data, function (idx, obj) {
-                    $("#treeTable").append("<tr data-tt-id=\"" + obj.nodeId + "\" data-tt-parent-id=\"" + obj.pid + "\"><td>" + obj.text + "</td><td>" + obj.email + "</td><td><button" + "th:href="@{/admin/users/" + obj.email + " class='btn btn-primary'>edit</button><button class='btn btn-danger' id=\"" + obj.nodeId + "\">delete</button></td></tr>");
+                    $("#treeTable").append("<tr data-tt-id=\"" + obj.nodeId + "\" data-tt-parent-id=\"" + obj.pid + "\"><td>" + obj.text + "</td><td>" + obj.email + "</td></tr>");
                 });
                 $("#treeTable").treetable({
                     expandable: true,

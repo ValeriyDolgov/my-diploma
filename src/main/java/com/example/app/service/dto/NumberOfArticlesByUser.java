@@ -11,5 +11,5 @@ import lombok.Setter;
 public class NumberOfArticlesByUser {
     private String email;
     @Id
-    private Long numberOfArticles;
+    private Integer numberOfArticles;
 }

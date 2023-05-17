@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,7 +18,11 @@ public class TopOfUsersController {
     @GetMapping("/topFive")
     public String getTopFive(Model model) {
         List<NumberOfArticlesByUser> topFive = topUsersRepository.getTopFiveUsersByArticles();
-        model.addAttribute("list", topFive);
+        Map<String, Integer> chartDate = new TreeMap<>();
+        for (NumberOfArticlesByUser user : topFive) {
+            chartDate.put(user.getEmail(), user.getNumberOfArticles());
+        }
+        model.addAttribute("chartData", chartDate);
         return "top";
     }
 }
