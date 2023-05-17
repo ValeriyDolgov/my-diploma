@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("nodes")
 @RequiredArgsConstructor
 public class NodeRestController {
+
     private final UserService userService;
 
     @GetMapping

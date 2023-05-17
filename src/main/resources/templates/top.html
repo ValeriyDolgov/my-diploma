@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments.html :: head ('Users')">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1> List of all users </h1>
+    <table class="table table-striped table-responsive-md table-bordered">
+        <thead>
+        <tr>
+            <th>User email</th>
+            <th>NumberOfArticles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="top : ${list}">
+            <td><a th:href="@{/user/{email} (email=${top.email})}" th:text="${top.email}"></a></td>
+            <td th:text="${top.numberOfArticles}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/user}" class="btn-danger btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+    <script type="module" th:inline="javascript" src="https://code.highcharts.com/highcharts.js">
+        import Highcharts from 'https://code.highcharts.com/es-modules/masters/highcharts.src.js';
+        import 'https://code.highcharts.com/es-modules/masters/modules/accessibility.src.js';
+        // this simply wraps the code in a function
+        // that waits for the DOM to be ready:
+        (function () {
+
+            // this is populated by Thymeleaf:
+            var pieChartData = [
+                {"catName": "Humanities", "catCount": 123},
+                {"catName": "Sciences", "catCount": 145},
+                {"catName": "Other", "catCount": 67}
+            ];
+
+            var series = [];
+            var data = [];
+
+            for (var i = 0; i < pieChartData.length; i++) {
+                var object = {};
+                object.name = pieChartData[i].catName.toUpperCase();
+                object.y = pieChartData[i].catCount;
+                data.push(object);
+            }
+            var seriesObject = {
+                name: 'Course By Category',
+                colorByPoint: true,
+                data: data
+            };
+            series.push(seriesObject);
+            drawPieChart(series);
+
+            // draw the pie chart:
+            function drawPieChart(series) {
+                Highcharts.chart('chartContainer', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Your Heading Goes Here'
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return this.key + ':' + this.y;
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.y}'
+                            }
+                        }
+                    },
+                    // use the series data defined earlier:
+                    series: series
+                });
+            }
+
+        })();
+
+    </script>
+</div>
+
+</body>
+</html>

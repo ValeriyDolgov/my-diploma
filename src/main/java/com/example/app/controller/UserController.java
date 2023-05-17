@@ -25,11 +25,6 @@ public class UserController {
         return "user/index";
     }
 
-    @GetMapping("/workerTree")
-    public String showWorkerTree(){
-        return "workerTree";
-    }
-
     @GetMapping("/all")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.findAllUsers());
