@@ -21,7 +21,7 @@ public class MetricsController {
     public String getMetrics(Model model) {
         String diskFreeSpace = metricsService.getDiskInfoInGB(Tags.DISK_FREE_TAG);
         String diskTotalSpace = metricsService.getDiskInfoInGB(Tags.DISK_TOTAL_TAG);
-        Double percentOfUsedSpaceOnDisk = (Double.parseDouble(diskFreeSpace) * 100) / Double.parseDouble(diskTotalSpace);
+        Double percentOfUsedSpaceOnDisk = 100 - (Double.parseDouble(diskFreeSpace) * 100) / Double.parseDouble(diskTotalSpace);
         model.addAttribute("diskFree", metricsService.getDiskInfoInGB(Tags.DISK_FREE_TAG));
         model.addAttribute("diskTotal", metricsService.getDiskInfoInGB(Tags.DISK_TOTAL_TAG));
         model.addAttribute("percentsOfUsedSpace", new DecimalFormat("#0.00")

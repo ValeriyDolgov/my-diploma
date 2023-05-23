@@ -51,7 +51,7 @@
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin/users/{email}/deactivate (login=${user.email})}"
+    <a th:href="@{/admin/users/{email}/deactivate (email=${user.email})}"
        class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Deactivate this account</a>
     <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
 </div>
