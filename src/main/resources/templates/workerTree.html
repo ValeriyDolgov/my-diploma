@@ -2,18 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Spring Boot Thymeleaf Application - Bootstrap Tree Table</title>
+    <title>Worker Tree Table</title>
 
     <link th:rel="stylesheet" th:href="@{assets/jquery-treetable/jquery.treetable.css}"/>
     <link th:rel="stylesheet" th:href="@{assets/jquery-treetable/jquery.treetable.theme.default.css}"/>
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand" href="/static">Thymeleaf - Bootstrap Tree Table</a>
+        <a class="navbar-brand" th:href="@{/user}">QDIS(QAZDEVELOP Internal System)</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -22,24 +20,30 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" th:href="@{/user}">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" th:href="@{/user/profile}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" th:href="@{/article/all}">Articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" th:href="@{/workerTree}">Tree of workers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/topFive}">Top of active users</a>
                 </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/article/all/serach}">
+                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
-
 <div class="container">
 
     <div class="row">
@@ -50,7 +54,6 @@
                 <tr>
                     <th>First Name</th>
                     <th>URL</th>
-                    <th>Action</th>
                 </tr>
                 </thead>
             </table>
@@ -85,6 +88,5 @@
         });
     });
 </script>
-
 </body>
 </html>

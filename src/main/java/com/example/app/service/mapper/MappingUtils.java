@@ -52,6 +52,7 @@ public class MappingUtils {
                 .user(null)
                 .build();
     }
+
     public ContactInfo mapToContactInfoFromRegisterRequest(RegisterRequest registerRequest) {
         return ContactInfo.builder()
                 .employee(null)

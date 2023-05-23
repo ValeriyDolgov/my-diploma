@@ -1,6 +1,7 @@
 package com.example.app.configs;
 
 import com.github.slugify.Slugify;
+import org.springframework.boot.actuate.audit.InMemoryAuditEventRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -24,7 +25,9 @@ public class SecurityConfig {
                 .csrf()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/register", "/css/**", "/user/assets/**", "/user/webjars/**", "/assets/**").permitAll()
+                .requestMatchers("/", "/register", "/css/**", "/user/assets/**", "/user/webjars/**",
+                        "/assets/**").permitAll()
+                .requestMatchers("/actuator/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(formLogin -> formLogin
@@ -50,5 +53,10 @@ public class SecurityConfig {
     @Bean
     public Slugify slugify() {
         return Slugify.builder().build();
+    }
+
+    @Bean
+    public InMemoryAuditEventRepository repository() {
+        return new InMemoryAuditEventRepository();
     }
 }

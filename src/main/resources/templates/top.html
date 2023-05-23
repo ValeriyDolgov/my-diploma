@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Google Charts Example - Spring Boot</title>
+    <title>Top users</title>
+    <link href="../public/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link href="../public/css/user-form.css" th:href="@{/css/user-form.css}" rel="stylesheet">
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet"
@@ -11,8 +13,39 @@
             src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/user}">QDIS(QAZDEVELOP Internal System)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/user}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/article/all}">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/workerTree}">Tree of workers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/topFive}">Top of active users</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div align="center" style="width: 1000px;">
-    <h2>Spring Boot Google Charts Example</h2>
+    <h2>Top 5 users by number of articles</h2>
     <div id="chart_div"></div>
     <div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>

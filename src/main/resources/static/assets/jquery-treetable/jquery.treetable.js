@@ -1,10 +1,3 @@
-/*
- * jQuery treetable Plugin 3.2.0
- * http://ludo.cubicphuse.nl/jquery-treetable
- *
- * Copyright 2013, Ludo van den Boom
- * Dual licensed under the MIT or GPL Version 2 licenses.
- */
 (function($) {
   var Node, Tree, methods;
 
@@ -16,10 +9,8 @@
       this.tree = tree;
       this.settings = settings;
 
-      // TODO Ensure id/parentId is always a string (not int)
       this.id = this.row.data(this.settings.nodeIdAttr);
 
-      // TODO Move this to a setParentId function?
       parentId = this.row.data(this.settings.parentIdAttr);
       if (parentId != null && parentId !== "") {
         this.parentId = parentId;
@@ -67,8 +58,6 @@
     Node.prototype.collapsed = function() {
       return this.row.hasClass("collapsed");
     };
-
-    // TODO destroy: remove event handlers, expander, indenter, etc.
 
     Node.prototype.expand = function() {
       if (this.expanded()) {

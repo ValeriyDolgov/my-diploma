@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class ContactInfoService {
     private final ContactInfoRepository contactInfoRepository;
 
-    public ContactInfo getById(Long id){
+    public ContactInfo getById(Long id) {
         return contactInfoRepository.findContactInfoById(id);
     }
 }

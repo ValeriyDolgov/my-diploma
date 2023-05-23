@@ -13,10 +13,13 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(value = "SELECT * FROM article WHERE title LIKE :query OR text LIKE :query", nativeQuery = true)
     List<Article> findByTitleOrTextContaining(@Param("query") String query);
 
-//    List<Article> findAllByTitleContainsIgnoreCaseOrTextContainingIgnoreCase(String query);
     List<Article> findAllByIsModeratedIsFalseAndIsPublishedIsFalse();
+
     List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsFalse();
+
     List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
+
     Article getArticleByTitle(String title);
+
     Article getArticleBySlugContainingIgnoreCase(String slug);
 }

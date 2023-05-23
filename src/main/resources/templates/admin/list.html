@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="_fragments.html :: head ('Users')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Server usage</h1>
+    <div>
+        Free space on disk:
+        <a th:text="${diskFree}"></a> Gb
+        <br>
+    </div>
+    <div>
+        Total space on disk:
+        <a th:text="${diskTotal}"></a> Gb
+        <br>
+    </div>
+    <div>
+        Percent of load of disk:
+        <a th:text="${percentsOfUsedSpace}"></a>%
+        <br>
+    </div>
+    <div>
+        Maximal time of rendering pages:
+        <a th:text="${maxRenderPageTime}"></a> seconds.
+        <br>
+    </div>
+    <div>
+        Current cpu usage:
+        <a th:text="${cpuUsage}"></a>%
+    </div>
+</div>
+</body>
+</html>

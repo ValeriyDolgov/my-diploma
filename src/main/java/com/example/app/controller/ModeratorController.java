@@ -64,7 +64,7 @@ public class ModeratorController {
     @PostMapping("/moderated/{slug}/publish")
     public String publishArticle(@PathVariable String slug) {
         articleService.publishArticle(slug);
-        return "redirect:/moderator/moderated";
+        return "redirect:/moderator/notModerated";
     }
 
     @PostMapping("/moderated/{slug}/return")

@@ -3,19 +3,20 @@
 <head th:replace="~{_fragments.html :: head ('Main page')}">
   <title></title>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
   <div class="container">
-    <a class="navbar-brand" href="/static">QDIS(QAZDEVELOP Internal System)</a>
+    <a class="navbar-brand" th:href="@{/user}">QDIS(QAZDEVELOP Internal System)</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
+            aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home
+          <a class="nav-link" th:href="@{/user}">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -32,13 +33,23 @@
           <a class="nav-link" th:href="@{/topFive}">Top of active users</a>
         </li>
       </ul>
+      <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/article/all/search}">
+        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search articles" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>
 <div class="container">
+  <br>
   <h1>
     Hello: <span th:text="${#authentication.principal.username}"></span>. Have a nice day!
   </h1>
+  <br>
+<!--  <p>-->
+<!--    <a href="#" th:href="@{properties}" class="btn btn-lg btn-success">Check System Properties</a>-->
+<!--  </p>-->
+
 <!--  <p>-->
 <!--    <a th:href="@{/user/profile}"-->
 <!--       class="btn btn-lg btn-primary btn-block mb-4 col-sm-3">Show profile</a>-->

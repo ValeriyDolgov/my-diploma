@@ -4,6 +4,41 @@
     <title></title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/user}">QDIS(QAZDEVELOP Internal System)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/user}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/article/all}">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/workerTree}">Tree of workers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/topFive}">Top of active users</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/article/all/search}">
+                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search articles" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
 <div class="container">
     <h1> List of articles </h1>
     <table class="table table-striped table-responsive-md table-bordered">
@@ -25,11 +60,11 @@
     </table>
     <form method="GET" th:action="@{/article/all/search}">
         <label>
-            <input class="form-control mb-4 col-10" name="query" type="text" placeholder="Введите отчетный месяц в числовом формате"/>
+            <input class="form-control mb-4 col-15" name="query" type="text" placeholder="Input your query"/>
         </label>
-        <button type="submit" class="btn btn-info col-2.5">Поиск</button>
+        <button type="submit" class="btn btn-info col-2.5">Search</button>
     </form>
-    <a th:href="@{/user}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+<!--    <a th:href="@{/user}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>-->
 </div>
 </body>
 </html>

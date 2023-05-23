@@ -10,6 +10,7 @@ public enum Position {
     AccountManager,
     BusinessManager,
     ProjectManager,
-    Accountant,
-    CTO
+    MainBookkeeper,
+    CTO,
+    Lawyer
 }

@@ -29,15 +29,17 @@
             <input class="form-control mb-4 col-10" type="text" th:field="*{collaborators}" id="collaborators"
                    placeholder="Collaborators">
         </p>
-        <p>
-            <label for="isModerated" class="sr-only">Ready to publish?</label>
-            <input class="checkbox" type="checkbox" th:field="*{isModerated}" id="isModerated">
-
-        </p>
         <input class="btn-success btn-lg btn-primary btn-block mb-4 col-3" type="submit" value="Update"/>
         <a th:href="@{/moderator/notModerated}" class="btn-danger btn-lg btn-primary btn-block mb-4 col-3">Return to
             articles</a>
     </form>
 </div>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#text'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 </body>
 </html>
