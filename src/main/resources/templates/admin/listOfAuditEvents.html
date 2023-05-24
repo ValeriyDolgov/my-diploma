@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments.html :: head ('Articles')">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1>List of events for principal: <span th:text="${email}"></span></h1>
+    <table class="table table-striped table-responsive-md table-bordered">
+        <thead>
+        <tr>
+            <th>User principal</th>
+            <th>Timestamp</th>
+            <th>Type of Event</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${listOfAuditEvents}">
+            <td th:text="${event.getPrincipal()}"></td>
+            <td th:text="${event.getTimestamp()}"></td>
+            <td th:text="${event.getType()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+</div>
+</body>
+</html>

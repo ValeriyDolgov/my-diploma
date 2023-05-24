@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{_fragments.html :: head ('User profile deactivation')}">
-    <title></title>
+<html lang="en">
+<head th:replace="_fragments.html :: head ('Users')">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -36,20 +37,36 @@
     </div>
 </nav>
 
-<div class="container">
-    <h1>User: <span th:text="${email}"></span></h1>
-    <form action="#"
-          th:action="@{/admin/users/{email}/deactivate (email=${email})}"
-          th:object="${deactivationData}"
-          method="post">
-        <label for="confirmation">
-            Confirmation <i>(enter: <span th:text="${email}"></span>)</i>
-        </label>
-        <input class="form-control mb-4 col-3" type="text" th:field="*{confirmation}" id="confirmation"
-               placeholder="Confirmation">
-        <p th:if="${confirmationMismatched}" class="warning">Entered data does not match login</p>
-        <input class="btn btn-lg btn-danger btn-block mb-4 col-sm-3" type="submit" value="Deactivate">
-        <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+<div class="container-fluid">
+    <h1>Server usage</h1>
+    <div>
+        Free space on disk:
+        <a th:text="${diskFree}"></a> Gb
+        <br>
+    </div>
+    <div>
+        Total space on disk:
+        <a th:text="${diskTotal}"></a> Gb
+        <br>
+    </div>
+    <div>
+        Percent of load of disk:
+        <a th:text="${percentsOfUsedSpace}"></a>%
+        <br>
+    </div>
+    <div>
+        Maximal time of rendering pages:
+        <a th:text="${maxRenderPageTime}"></a> seconds.
+        <br>
+    </div>
+    <div>
+        Current cpu usage:
+        <a th:text="${cpuUsage}"></a>%
+    </div>
+    <br>
+    <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/admin/metrics/events}">
+        <input class="form-control mr-sm-2" name="principal" type="search" placeholder="Email" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Show logs of user by login</button>
     </form>
 </div>
 </body>

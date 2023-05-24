@@ -6,7 +6,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/admin}">QDIS(QAZDEVELOP Internal System)</a>
+        <a class="navbar-brand" th:href="@{/admin}">QDIS(QAZDEVELOP Internal System) -- Administrator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -26,16 +26,12 @@
                     <a class="nav-link" th:href="@{/admin/users/{email} (email=${#authentication.principal.username})}">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/workerTree}"></a>
+                    <a class="nav-link" th:href="@{/workerTree}">Worker tree</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/topFive}">Top of active users</a>
+                    <a class="nav-link" th:href="@{/admin/metrics}">Server Usage</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get" th:action="@{/article/all/search}">
-                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search articles" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </div>
 </nav>
