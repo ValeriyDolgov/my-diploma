@@ -4,38 +4,7 @@
     <title></title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/admin}">QDIS(QAZDEVELOP Internal System) -- Administrator</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/admin}">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/users}">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/users/{email} (email=${#authentication.principal.username})}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/workerTree}">Worker tree</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/admin/metrics}">Server Usage</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<div th:insert="~{navbar-admin}"></div>
 <div class="container">
     <form class="user-form" action="#"
           th:action="@{/admin/users/{email}/edit (email=${user.email})}"
@@ -54,10 +23,7 @@
         </label>
         <input class="form-control mb-4 col-10" type="text" th:field="*{password}" id="password"
                placeholder="Password">
-
         <input class="btn btn-lg badge-success btn-block col-sm-10" type="submit" value="Update">
-
-        <a th:href="@{/admin}" class="btn btn-lg btn-primary btn-block mb-4 col-10">Return to Main page</a>
     </form>
 </div>
 </body>

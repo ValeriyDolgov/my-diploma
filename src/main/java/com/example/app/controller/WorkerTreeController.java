@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WorkerTreeController {
     @GetMapping("/workerTree")
-    public String workerTree(){
+    public String workerTree() {
         return "workerTree";
     }
 }

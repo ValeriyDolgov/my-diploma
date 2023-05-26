@@ -1,4 +1,4 @@
-package com.example.app.service;
+package com.example.app.service.constants;
 
 public abstract class Tags {
     public static final String DISK_FREE_TAG = "disk.free";

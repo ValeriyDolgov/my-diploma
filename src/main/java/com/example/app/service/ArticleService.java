@@ -8,17 +8,22 @@ import com.example.app.service.dto.UpdateArticleRequest;
 import com.example.app.service.mapper.MappingUtils;
 import com.github.slugify.Slugify;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
-    private final UserService userService;
     private final MappingUtils mappingUtils;
+    private final UserService userService;
     private final Slugify slugify;
 
     public void saveNewArticle(String userEmail, ArticleRequest articleRequest) {
@@ -35,8 +40,30 @@ public class ArticleService {
         return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
     }
 
-    public List<Article> showModeratedArticlesByQuery(String query) {
-        return articleRepository.findByTitleOrTextContaining("%" + query + "%");
+    public Page<Article> findAllPageableArticles(Pageable pageable) {
+        List<Article> articles = articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
+        return findPaginated(pageable, articles);
+    }
+
+    public Page<Article> findAllPageableArticlesByQuery(Pageable pageable, String query) {
+        List<Article> articles = articleRepository.findByTitleOrTextContaining("%" + query + "%");
+        return findPaginated(pageable, articles);
+    }
+
+    public Page<Article> findPaginated(Pageable pageable, List<Article> articles) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Article> list;
+
+        if (articles.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, articles.size());
+            list = articles.subList(startItem, toIndex);
+        }
+
+        return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), articles.size());
     }
 
     public List<Article> showNotModeratedArticles() {
@@ -51,7 +78,7 @@ public class ArticleService {
         return articleRepository.getArticleBySlugContainingIgnoreCase(slug);
     }
 
-    public Article updateArticle(String slug, UpdateArticleRequest request) {
+    public void updateArticle(String slug, UpdateArticleRequest request) {
         var article = getBySlug(slug);
         article.setTitle(request.getTitle());
         article.setSlug(slugify.slugify(request.getTitle()));
@@ -61,21 +88,18 @@ public class ArticleService {
         article.setDateOfUpdate(LocalDate.now());
         article.setIsModerated(request.getIsModerated());
         articleRepository.save(article);
-        return article;
     }
 
-    public Article publishArticle(String slug) {
+    public void publishArticle(String slug) {
         var article = getBySlug(slug);
         article.setIsPublished(true);
         articleRepository.save(article);
-        return article;
     }
 
-    public Article returnArticleToModerating(String slug) {
+    public void returnArticleToModerating(String slug) {
         var article = getBySlug(slug);
         article.setIsModerated(false);
         article.setIsPublished(false);
         articleRepository.save(article);
-        return article;
     }
 }

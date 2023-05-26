@@ -8971,5 +8971,19 @@ a.text-dark:hover, a.text-dark:focus {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+  .pagination {
+    display: inline-block;
+  }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 5px 5px;
+    text-decoration: none;
+  }
+  .pagination a.active {
+    background-color: gray;
+    color: white;
+    border-radius: 2px;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */

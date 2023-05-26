@@ -15,6 +15,7 @@ import java.util.TreeMap;
 @RequiredArgsConstructor
 public class TopOfUsersController {
     private final TopUsersRepository topUsersRepository;
+
     @GetMapping("/topFive")
     public String getTopFive(Model model) {
         List<NumberOfArticlesByUser> topFive = topUsersRepository.getTopFiveUsersByArticles();

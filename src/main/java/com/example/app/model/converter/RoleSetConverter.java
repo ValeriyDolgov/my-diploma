@@ -13,24 +13,24 @@ import java.util.Set;
 @Converter(autoApply = true)
 @Component
 public class RoleSetConverter implements AttributeConverter<Set<Role>, String> {
-	ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
-	@Override
-	public String convertToDatabaseColumn(Set<Role> roles) {
-		try {
-			return objectMapper.writeValueAsString(roles);
-		} catch (JsonProcessingException e) {
-			throw new IllegalStateException(e);
-		}
-	}
+    @Override
+    public String convertToDatabaseColumn(Set<Role> roles) {
+        try {
+            return objectMapper.writeValueAsString(roles);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-	@Override
-	public Set<Role> convertToEntityAttribute(String s) {
-		JavaType roleSetType = objectMapper.getTypeFactory().constructParametricType(Set.class, Role.class);
-		try {
-			return objectMapper.readValue(s, roleSetType);
-		} catch (JsonProcessingException e) {
-			throw new IllegalStateException(e);
-		}
-	}
+    @Override
+    public Set<Role> convertToEntityAttribute(String s) {
+        JavaType roleSetType = objectMapper.getTypeFactory().constructParametricType(Set.class, Role.class);
+        try {
+            return objectMapper.readValue(s, roleSetType);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }

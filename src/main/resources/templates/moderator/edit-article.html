@@ -4,6 +4,7 @@
     <title></title>
 </head>
 <body>
+<div th:insert="~{navbar-moderator}"></div>
 <div class="container">
     <form class="form-control mb-4" action="#"
           th:action="@{/moderator/notModerated/{slug}/edit (slug=${article.slug})}"
