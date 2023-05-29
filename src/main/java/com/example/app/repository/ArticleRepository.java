@@ -1,6 +1,7 @@
 package com.example.app.repository;
 
 import com.example.app.model.Article;
+import com.example.app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +23,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Article getArticleByTitle(String title);
 
     Article getArticleBySlugContainingIgnoreCase(String slug);
+
+    List<Article> findAllByAuthor(User user);
 }

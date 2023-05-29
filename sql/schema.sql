@@ -8,6 +8,8 @@ CREATE TABLE "users"
     "birthday"             date,
     "password"             varchar,
     "sex"                  varchar,
+    "country"              varchar,
+    "city"                 varchar,
     "reset_password_token" varchar,
     "nickname"             varchar,
     "is_active"            boolean,

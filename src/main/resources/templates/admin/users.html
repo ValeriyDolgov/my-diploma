@@ -7,6 +7,9 @@
 <div th:insert="~{navbar-admin}"></div>
 <div class="container">
     <h1> List of all users </h1>
+    <a class="profile-text"> <strong>Click to </strong><a href="#">test.email@qazdevelop.com</a><strong> to see details
+        of account!</strong></a>
+    <p></p>
     <table class="table table-striped table-responsive-md table-bordered">
         <thead>
         <tr>
@@ -34,7 +37,6 @@
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin}" class="btn-danger btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
 </div>
 </body>
 </html>

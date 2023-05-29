@@ -7,22 +7,30 @@
 <div th:insert="~{navbar-admin}"></div>
 <div class="container">
     <form class="user-form" action="#"
-          th:action="@{/admin/users/{email}/edit (email=${user.email})}"
+          th:action="@{/admin/users/{email}/edit (email=${email})}"
           th:object="${user}"
           method="post">
-        <h1 class="user-form-header m-auto">Edit user profile: <span th:text="${user.login}"></span></h1>
+        <h1 class="user-form-header m-auto">Edit user profile: <span th:text="${email}"></span></h1>
 
         <label for="email">
-            Email
+            Email <br/>
+            <i>(leave blank to keep it unchanged)</i>
         </label>
-        <input class="form-control mb-4 col-10" type="text" th:field="*{email}" id="email" placeholder="Email">
-
+        <input class="form-control mb-4 col-10" type="text" th:field="*{email}" id="email"
+               placeholder="email">
         <label for="password">
             Password <br/>
             <i>(leave blank to keep it unchanged)</i>
         </label>
         <input class="form-control mb-4 col-10" type="text" th:field="*{password}" id="password"
                placeholder="Password">
+        <label>
+            <select th:field="*{roles}" class="form-check mb-4">
+                <option th:value="'EMPLOYEE'" th:text="Employee"></option>
+                <option th:value="'MODERATOR'" th:text="Moderator"></option>
+                <option th:value="'ADMIN'" th:text="Admin"></option>
+            </select>
+        </label>
         <input class="btn btn-lg badge-success btn-block col-sm-10" type="submit" value="Update">
     </form>
 </div>

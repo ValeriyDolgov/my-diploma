@@ -36,12 +36,6 @@ public class ArticleController {
         return "redirect:/user";
     }
 
-    @GetMapping("/all")
-    public String showPublishedArticles(Model model) {
-        model.addAttribute("listOfArticles", articleService.showPublishedArticles());
-        return "article/moderated-list";
-    }
-
     @GetMapping("/all/pageable")
     public String showArticlesPageable(
             @RequestParam("page") Optional<Integer> page,

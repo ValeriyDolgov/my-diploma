@@ -25,17 +25,14 @@
         </tr>
         </tbody>
     </table>
-    <div th:if="${articlePage.totalPages > 0}" class="d-inline-flex"
-         th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/article/all/pageable(size=${articlePage.size}, page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber==articlePage.number + 1} ? active"></a>
+    <div th:if="${articlePage.totalElements > 5}">
+        <div th:if="${articlePage.totalPages > 0}" class="pagination"
+             th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/article/all/pageable(size=${articlePage.size}, page=${pageNumber})}" th:text="${pageNumber}"
+               th:class="${pageNumber==articlePage.number + 1} ? active"></a>
+        </div>
     </div>
     <br>
-    <form method="GET" th:action="@{/article/all/search}">
-        <label>
-            <input class="form-control mb-4 col-15" name="query" type="text" placeholder="Input your query"/>
-        </label>
-        <button type="submit" class="btn btn-info col-2.5">Search</button>
-    </form>
 </div>
 </body>
 </html>

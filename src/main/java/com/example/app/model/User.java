@@ -35,6 +35,10 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "sex")
     private String sex;
+    @Column(name = "country")
+    private String country;
+    @Column(name = "city")
+    private String city;
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
     @Column(name = "nickname")

@@ -6,55 +6,87 @@
 <body>
 <div th:insert="~{navbar-admin}"></div>
 <div class="container">
-    <h1>User details</h1>
-    <table class="table table-striped table-responsive-md table-bordered">
-        <thead>
-        <tr>
-            <th>User id</th>
-            <th>Surname</th>
-            <th>Name</th>
-            <th>Patronymic</th>
-            <th>Email</th>
-            <th>Birthday</th>
-            <th>Sex</th>
-            <th>Role</th>
-            <th>Date of creation</th>
-            <th>Phone number</th>
-            <th>Telegram account</th>
-            <th>Skype account</th>
-            <th>Isn't locked?</th>
-            <th>Isn't expired?</th>
-            <th>Is Enabled?</th>
-            <th>Edit</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.surname}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.patronymic}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.birthday}"></td>
-            <td th:text="${user.sex}"></td>
-            <td th:text="${user.roles}"></td>
-            <td th:text="${user.employee.dateOfCreation}"></td>
-            <td th:text="${user.employee.contactInfo.personalNumber}"></td>
-            <td th:text="${user.employee.contactInfo.telegramAccount}"></td>
-            <td th:text="${user.employee.contactInfo.skypeAccount}"></td>
-            <td th:text="${user.accountNonLocked}"></td>
-            <td th:text="${user.accountNonExpired}"></td>
-            <td th:text="${user.enabled}"></td>
-            <td>
-                <a th:href="@{/admin/users/{email}/edit (email=${user.email})}"
-                   class="btn btn-lg badge-success btn-block col-sm-10 m-auto">Edit</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/admin/users/{email}/deactivate (email=${user.email})}"
-       class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Deactivate this account</a>
-    <a th:href="@{/admin}" class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Return to Main page</a>
+    <h1>User details: <span th:text="${user.email}"></span></h1>
+    <div>
+        <div class="profile-text">
+            <strong>Surname:</strong>
+            <a th:text="${user.surname}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Name:</strong>
+            <a th:text="${user.name}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Patronymic:</strong>
+            <a th:text="${user.patronymic}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Email:</strong>
+            <a th:text="${user.email}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Birthday:</strong>
+            <a th:text="${user.birthday}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Sex:</strong>
+            <a th:text="${user.sex}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Role:</strong>
+            <a class="profile-text" th:text="${user.roles}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Date of creation:</strong>
+            <a th:text="${user.employee.dateOfCreation}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Date of update:</strong>
+            <a th:text="${user.employee.dateOfUpdate}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Phone number: </strong>
+            <a th:text="${user.employee.contactInfo.personalNumber}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Telegram Account:</strong>
+            <a th:text="${user.employee.contactInfo.telegramAccount}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Skype account:</strong>
+            <a th:text="${user.employee.contactInfo.skypeAccount}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>Is enabled:</strong>
+            <a th:text="${user.active}"></a>
+            <p></p>
+        </div>
+    </div>
+    <a th:href="@{/admin/users/{email}/edit (email=${user.email})}"
+       class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Edit</a>
+    <a th:if="${user.active == true}">
+        <a th:href="@{/admin/users/{email}/deactivate (email=${user.email})}"
+           class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Deactivate this account
+        </a>
+    </a>
+    <a th:if="${user.active == false}">
+        <form th:action="@{/admin/users/{email}/activate (email=${user.email})}" method="post">
+            <button type="submit" class="btn btn-lg btn-danger btn-block mb-4 col-sm-3">Activate this account
+            </button>
+        </form>
+    </a>
 </div>
 </body>
 </html>

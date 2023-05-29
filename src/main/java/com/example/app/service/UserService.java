@@ -1,25 +1,30 @@
 package com.example.app.service;
 
+import com.example.app.model.Article;
 import com.example.app.model.Department;
 import com.example.app.model.User;
-import com.example.app.repository.ContactInfoRepository;
-import com.example.app.repository.DepartmentRepository;
-import com.example.app.repository.EmployeeRepository;
-import com.example.app.repository.UserRepository;
+import com.example.app.repository.*;
 import com.example.app.service.dto.Node;
 import com.example.app.service.dto.RegisterRequest;
+import com.example.app.service.dto.UpdateUserByAdminRequest;
 import com.example.app.service.dto.UpdateUserRequest;
 import com.example.app.service.mapper.MappingUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -30,6 +35,7 @@ public class UserService implements UserDetailsService {
     private final ContactInfoRepository contactInfoRepository;
     private final DepartmentRepository departmentRepository;
     private final EmployeeRepository employeeRepository;
+    private final ArticleRepository articleRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final MappingUtils mappingUtils;
@@ -40,7 +46,33 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAllUsers() {
-        return userRepository.findAllByOrderByEmail();
+        return userRepository.findAllByOrderById();
+    }
+
+    public Page<User> findAllPageableUsers(Pageable pageable) {
+        List<User> users = findAllUsers();
+        return findPaginated(pageable, users);
+    }
+
+    public Page<User> findAllPageableUsersByQuery(Pageable pageable, String query) {
+        List<User> users = userRepository.findBySurnameOrNameOrPatronymicOrEmailContaining("%" + query + "%");
+        return findPaginated(pageable, users);
+    }
+
+    public Page<User> findPaginated(Pageable pageable, List<User> users) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<User> list;
+
+        if (users.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, users.size());
+            list = users.subList(startItem, toIndex);
+        }
+
+        return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), users.size());
     }
 
     public void registerNewUser(RegisterRequest registerRequest) {
@@ -63,6 +95,7 @@ public class UserService implements UserDetailsService {
         if (login.equals(confirmation)) {
             User user = getByEmail(login);
             user.setActive(false);
+            user.getEmployee().setDateOfUpdate(LocalDateTime.now());
             return true;
         }
         return false;
@@ -73,10 +106,54 @@ public class UserService implements UserDetailsService {
         user.setSurname(updateUserRequest.getSurname());
         user.setName(updateUserRequest.getName());
         user.setPatronymic(updateUserRequest.getPatronymic());
+        if (updateUserRequest.getBirthday() != null ) {
+            user.setBirthday(updateUserRequest.getBirthday());
+        }
         if (Strings.isNotBlank(updateUserRequest.getPassword())) {
             user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
         }
+        user.getEmployee().setDateOfUpdate(LocalDateTime.now());
+        user.setSex(String.valueOf(updateUserRequest.getGender()));
+        user.setCountry(updateUserRequest.getCountry());
+        user.setCity(updateUserRequest.getCity());
+        user.getEmployee().getContactInfo().setPersonalNumber(updateUserRequest.getPhoneNumber());
+        user.getEmployee().getContactInfo().setTelegramAccount(updateUserRequest.getTelegramAccount());
+        user.getEmployee().getContactInfo().setSkypeAccount(updateUserRequest.getSkypeAccount());
+        user.setCountry(updateUserRequest.getCountry());
+        user.setCity(updateUserRequest.getCity());
         return user;
+    }
+
+    public User updateUserByAdmin(String email, UpdateUserByAdminRequest request) {
+        var user = getByEmail(email);
+        if (Strings.isNotBlank(request.getEmail())) {
+            var existingUser = userRepository.findByEmail(request.getEmail());
+            if (existingUser.isPresent()) {
+                throw new IllegalArgumentException("Email is already registered: " + request.getEmail());
+            }
+            user.setEmail(request.getEmail());
+        }
+        user.setRoles(request.getRoles());
+        if (Strings.isNotBlank(request.getPassword())) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+        user.getEmployee().setDateOfUpdate(LocalDateTime.now());
+        return user;
+    }
+
+    public boolean activateUserAccount(String email) {
+        var user = getByEmail(email);
+        if (!user.getActive()) {
+            user.setActive(true);
+            user.getEmployee().setDateOfUpdate(LocalDateTime.now());
+            return true;
+        }
+        return false;
+    }
+
+    public List<Article> getListOfAllArticlesForUser(String email) {
+        var user = getByEmail(email);
+        return articleRepository.findAllByAuthor(user);
     }
 
     public List<Node> getListOfNodesForWorkerTree() {

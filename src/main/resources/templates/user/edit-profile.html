@@ -25,16 +25,44 @@
         </label>
         <input class="form-control mb-4 col-10" type="text" th:field="*{patronymic}" id="patronymic"
                placeholder="Your patronymic">
-
+        <label for="birthday">
+            Birthday<br/>
+            <i>(leave blank to keep it unchanged)</i>
+            <input type="date" th:field="*{birthday}" placeholder="Birthday" id="birthday" class="form-control mb-4 col-10"/>
+        </label>
         <label for="password">
             Password <br/>
             <i>(leave blank to keep it unchanged)</i>
         </label>
         <input class="form-control mb-4 col-10" type="text" th:field="*{password}" id="password" placeholder="Password">
+        <label>
+            <select th:field="*{sex}" class="form-check mb-4">
+                <option th:value="'MALE'" th:text="Male"></option>
+                <option th:value="'FEMALE'" th:text="Female"></option>
+            </select>
+        </label>
+        <label>
+            Personal number
+            <input type="text" th:field="*{employee.contactInfo.personalNumber}" placeholder="Phone number" class="form-control mb-4 col-10"/>
+        </label>
+        <label>
+            Telegram account name
+            <input type="text" th:field="*{employee.contactInfo.telegramAccount}" placeholder="Telegram account name" class="form-control mb-4"/>
+        </label>
+        <label>
+            Skype account name
+            <input type="text" th:field="*{employee.contactInfo.skypeAccount}" placeholder="Skype account name" class="form-control mb-4"/>
+        </label>
+        <label>
+            Country
+            <input type="text" th:field="*{country}" placeholder="Country" class="form-control mb-4 col-10"/>
+        </label>
+        <label>
+            City
+            <input type="text" th:field="*{city}" placeholder="City" class="form-control mb-4 col-10"/>
+        </label>
 
         <input class="btn btn-lg badge-success btn-block col-sm-10" type="submit" value="Update">
-
-        <!--        <a th:href="@{/user}" class="btn btn-lg btn-primary btn-block mb-4 col-10">Return to Main page</a>-->
     </form>
 </div>
 </body>
