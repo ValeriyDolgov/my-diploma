@@ -24,5 +24,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Article getArticleBySlugContainingIgnoreCase(String slug);
 
-    List<Article> findAllByAuthor(User user);
+    List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsTrueAndAuthor(User user);
 }

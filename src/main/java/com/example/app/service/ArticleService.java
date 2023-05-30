@@ -36,10 +36,6 @@ public class ArticleService {
         }
     }
 
-    public List<Article> showPublishedArticles() {
-        return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
-    }
-
     public Page<Article> findAllPageableArticles(Pageable pageable) {
         List<Article> articles = articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
         return findPaginated(pageable, articles);
@@ -66,12 +62,14 @@ public class ArticleService {
         return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), articles.size());
     }
 
-    public List<Article> showNotModeratedArticles() {
-        return articleRepository.findAllByIsModeratedIsFalseAndIsPublishedIsFalse();
+    public Page<Article> showNotModeratedArticles(Pageable pageable) {
+        List<Article> articles = articleRepository.findAllByIsModeratedIsFalseAndIsPublishedIsFalse();
+        return findPaginated(pageable, articles);
     }
 
-    public List<Article> showModeratedAndNotPublishedArticles() {
-        return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsFalse();
+    public Page<Article> showModeratedAndNotPublishedArticles(Pageable pageable) {
+        List<Article> articles = articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsFalse();
+        return findPaginated(pageable, articles);
     }
 
     public Article getBySlug(String slug) {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Department')}">
+</head>
+<body>
+<div th:insert="~{navbar-admin}"></div>
+<div class="container">
+    <h1 th:text="${department.name}"></h1>
+    <div><strong> Head of department:
+        <a th:href="@{/admin/users/{email} (email=${department.headOfDepartment.email})}"
+           th:text="${department.headOfDepartment.name}"></a> </strong>
+        <p></p>
+    </div>
+    <h1> List of Workers </h1>
+    <a th:href="@{/admin/departments/{departmentName}/newWorker (departmentName=${department.name})}"
+       class="btn-success btn-lg btn-primary btn-block mb-4 col-3">Add new worker</a>
+    <div th:if="${numberOfWorkers > 0}">
+        <table class="table table-striped table-responsive-md table-bordered">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Position</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="worker : ${listOfWorkers}">
+                <td><a th:href="@{/admin/users/{email} (email=${worker.email})}" th:text="${worker.email}"></a></td>
+                <td th:text="${worker.employee.position}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${numberOfWorkers == 0}">
+        <h2> This department doesn't have workers now!</h2>
+    </div>
+</div>
+</body>
+</html>

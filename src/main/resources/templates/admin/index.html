@@ -7,15 +7,30 @@
 <div th:insert="~{navbar-admin}"></div>
 <div class="container">
     <h1>
-        User: <span th:text="${#authentication.principal.username}"></span>
+        User: <span th:text="${#authentication.principal.username}">. Have a nice day!</span>
     </h1>
     <b>
-        Click button <li class="nav-item">Button</li>
-        To get list of all users of application, click this <button class="btn-dark text-white-50">Users</button> on top! <br>
-        Yours profile will be shown by <button class="btn-dark text-white-50">Profile</button> ! <br>
-        Tree structure of employees of organization will be able by <button class="btn-dark text-white-50">Worker tree</button> ! <br>
-        Check server and application statistic you can from <button class="btn-dark text-white-50">Server Usage</button> ! <br>
-        To logout from system press <button class="btn btn-dark btn-outline-danger my-2 my-sm-0">Logout</button> !
+        Some rules and advices down there for you!
+        <li class="nav-item"></li>
+        List of departments wil be able by
+        <button class="btn-dark text-white-50">Departments</button>
+        on top! <br>
+        To get list of all users of application, click this
+        <button class="btn-dark text-white-50">Users</button>
+        on top! <br>
+        Yours profile will be shown by
+        <button class="btn-dark text-white-50">Profile</button>
+        ! <br>
+        Tree structure of employees of organization will be able by
+        <button class="btn-dark text-white-50">Worker tree</button>
+        ! <br>
+        Check server and application statistic you can from
+        <button class="btn-dark text-white-50">Server Usage</button>
+        ! <br>
+        To logout from system press
+        <button class="btn btn-dark btn-outline-danger my-2 my-sm-0">Logout</button>
+        !
+        <li class="nav-item"></li>
     </b>
 </div>
 </body>

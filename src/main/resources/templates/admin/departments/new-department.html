@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('New Department')}">
+    <title></title>
+</head>
+<body>
+<div th:insert="~{navbar-admin}"></div>
+<div class="container">
+    <form th:action="@{/admin/departments/new}" method="POST" class="form-control mb-4" novalidate>
+        <h2 class="form-signin-heading">Create new department</h2>
+        <p>
+            <label for="name" class="sr-only">Enter name of department</label>
+            <input type="text" id="name" name="name" class="form-control"
+                   placeholder="Name of department" required
+                   autofocus="autofocus"/> <br/>
+        </p>
+        <p>
+            <label for="emailOfHeadOfDepartment" class="sr-only">Enter email of head of department</label>
+            <input type="text" id="emailOfHeadOfDepartment" name="emailOfHeadOfDepartment" class="form-control"
+                   placeholder="Head of department" required/> <br/>
+        </p>
+        <input class="btn-success btn-lg btn-primary btn-block mb-4 col-3" type="submit" value="Create"/>
+    </form>
+</div>
+</body>
+</html>

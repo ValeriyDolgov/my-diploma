@@ -28,7 +28,8 @@
         <label for="birthday">
             Birthday<br/>
             <i>(leave blank to keep it unchanged)</i>
-            <input type="date" th:field="*{birthday}" placeholder="Birthday" id="birthday" class="form-control mb-4 col-10"/>
+            <input type="date" th:field="*{birthday}" placeholder="Birthday" id="birthday"
+                   class="form-control mb-4 col-10"/>
         </label>
         <label for="password">
             Password <br/>
@@ -43,15 +44,18 @@
         </label>
         <label>
             Personal number
-            <input type="text" th:field="*{employee.contactInfo.personalNumber}" placeholder="Phone number" class="form-control mb-4 col-10"/>
+            <input type="text" th:field="*{employee.contactInfo.personalNumber}" placeholder="Phone number"
+                   class="form-control mb-4 col-10"/>
         </label>
         <label>
             Telegram account name
-            <input type="text" th:field="*{employee.contactInfo.telegramAccount}" placeholder="Telegram account name" class="form-control mb-4"/>
+            <input type="text" th:field="*{employee.contactInfo.telegramAccount}" placeholder="Telegram account name"
+                   class="form-control mb-4"/>
         </label>
         <label>
             Skype account name
-            <input type="text" th:field="*{employee.contactInfo.skypeAccount}" placeholder="Skype account name" class="form-control mb-4"/>
+            <input type="text" th:field="*{employee.contactInfo.skypeAccount}" placeholder="Skype account name"
+                   class="form-control mb-4"/>
         </label>
         <label>
             Country

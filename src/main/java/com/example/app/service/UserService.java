@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 @RequiredArgsConstructor
@@ -106,7 +107,7 @@ public class UserService implements UserDetailsService {
         user.setSurname(updateUserRequest.getSurname());
         user.setName(updateUserRequest.getName());
         user.setPatronymic(updateUserRequest.getPatronymic());
-        if (updateUserRequest.getBirthday() != null ) {
+        if (updateUserRequest.getBirthday() != null) {
             user.setBirthday(updateUserRequest.getBirthday());
         }
         if (Strings.isNotBlank(updateUserRequest.getPassword())) {
@@ -137,6 +138,8 @@ public class UserService implements UserDetailsService {
         if (Strings.isNotBlank(request.getPassword())) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
         }
+        user.getEmployee().setPosition(request.getPosition());
+        user.setDepartments(request.getDepartment());
         user.getEmployee().setDateOfUpdate(LocalDateTime.now());
         return user;
     }
@@ -153,7 +156,16 @@ public class UserService implements UserDetailsService {
 
     public List<Article> getListOfAllArticlesForUser(String email) {
         var user = getByEmail(email);
-        return articleRepository.findAllByAuthor(user);
+        return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrueAndAuthor(user);
+    }
+
+    public List<Integer> getListOfPageNumbersForPagination(Page userPage) {
+        int totalPages = userPage.getTotalPages();
+        if (totalPages > 0) {
+            return IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .toList();
+        } else return null;
     }
 
     public List<Node> getListOfNodesForWorkerTree() {

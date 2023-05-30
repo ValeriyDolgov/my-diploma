@@ -27,7 +27,7 @@ public class ArticleController {
     public String showArticleForm(Model model) {
         ArticleRequest articleRequest = new ArticleRequest();
         model.addAttribute("article", articleRequest);
-        return "article/new-form";
+        return "user/article/new-form";
     }
 
     @PostMapping("/new")
@@ -56,7 +56,7 @@ public class ArticleController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "article/pageable-moderated";
+        return "user/article/pageable-moderated";
     }
 
     @GetMapping("/all/search")
@@ -78,13 +78,13 @@ public class ArticleController {
                     .toList();
             model.addAttribute("pageNumbers", pageNumbers);
         }
-        return "article/moderated-list-by-query";
+        return "user/article/moderated-list-by-query";
     }
 
     @GetMapping("/{slug}")
     public String showModeratedArticle(@PathVariable String slug, Model model) {
         var article = articleService.getBySlug(slug);
         model.addAttribute("article", article);
-        return "article/article";
+        return "user/article/article";
     }
 }

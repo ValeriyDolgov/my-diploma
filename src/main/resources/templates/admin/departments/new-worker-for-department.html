@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('New Department')}">
+    <title></title>
+</head>
+<body>
+<div th:insert="~{navbar-admin}"></div>
+<div class="container">
+    <form th:action="@{/admin/departments/{departmentName}/newWorker (departmentName=${departmentName})}" method="POST"
+          class="form-control mb-4" novalidate>
+        <h2 class="form-signin-heading">Add new worker to department</h2>
+        <p>
+            <label for="emailOfWorker" class="sr-only">Enter email of new worker</label>
+            <input type="text" id="emailOfWorker" th:field="${departmentNewWorker.emailOfWorker}" class="form-control"
+                   placeholder="Email of worker" required/> <br/>
+        </p>
+        <input class="btn-success btn-lg btn-primary btn-block mb-4 col-3" type="submit" value="Create"/>
+    </form>
+</div>
+</body>
+</html>

@@ -25,10 +25,23 @@
         <input class="form-control mb-4 col-10" type="text" th:field="*{password}" id="password"
                placeholder="Password">
         <label>
-            <select th:field="*{roles}" class="form-check mb-4">
-                <option th:value="'EMPLOYEE'" th:text="Employee"></option>
-                <option th:value="'MODERATOR'" th:text="Moderator"></option>
-                <option th:value="'ADMIN'" th:text="Admin"></option>
+            Role
+            <select th:field="*{roles}" class="checkbox">
+                <option th:each="value : ${roles}" th:value="${value}" th:text="${value}"></option>
+            </select>
+        </label>
+        <label>
+            Position
+            <select th:field="*{employee.position}" class="checkbox">
+                <option th:each="value : ${positions}" th:value="${value}" th:text="${value}"></option>
+            </select>
+        </label>
+        <label th:if="${user.isCEO == false}">
+            Department
+            <select th:field="*{departments}">
+                <option th:each="entity : ${departments}" th:value="${entity.id}"
+                        th:text="${entity.name}">
+                </option>
             </select>
         </label>
         <input class="btn btn-lg badge-success btn-block col-sm-10" type="submit" value="Update">

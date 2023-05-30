@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public String showArticlesPageable(
+    public String showUsersPageable(
             @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size,
             Model model) {
@@ -44,37 +43,23 @@ public class UserController {
         Page<User> userPage = userService.findAllPageableUsers(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("userPage", userPage);
-
-        int totalPages = userPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .toList();
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        model.addAttribute("pageNumbers", userService.getListOfPageNumbersForPagination(userPage));
 
         return "user/pageable-list";
     }
 
     @GetMapping("/all/search")
-    public String showOnlyModeratedArticlesByQuery(@RequestParam("page") Optional<Integer> page,
-                                                   @RequestParam("size") Optional<Integer> size,
-                                                   @RequestParam("query") String query,
-                                                   Model model) {
+    public String showUsersByQuery(@RequestParam("page") Optional<Integer> page,
+                                   @RequestParam("size") Optional<Integer> size,
+                                   @RequestParam("query") String query,
+                                   Model model) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
 
         Page<User> userPage = userService.findAllPageableUsersByQuery(PageRequest.of(currentPage - 1, pageSize), query);
         model.addAttribute("query", query);
         model.addAttribute("userPage", userPage);
-
-        int totalPages = userPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .toList();
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        model.addAttribute("pageNumbers", userService.getListOfPageNumbersForPagination(userPage));
         return "user/pageable-list";
     }
 

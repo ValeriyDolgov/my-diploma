@@ -48,7 +48,7 @@ public class User implements UserDetails {
     @Column(name = "is_active")
     private Boolean active;
     private Set<Role> roles = new HashSet<>();
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     private Employee employee;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -57,6 +57,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "department_id")
     )
     public List<Department> departments = new ArrayList<>();
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

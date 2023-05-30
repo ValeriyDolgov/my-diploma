@@ -73,6 +73,16 @@
             <a th:text="${user.active}"></a>
             <p></p>
         </div>
+        <div class="profile-text">
+            <strong>County:</strong>
+            <a th:text="${user.country}"></a>
+            <p></p>
+        </div>
+        <div class="profile-text">
+            <strong>City:</strong>
+            <a th:text="${user.city}"></a>
+            <p></p>
+        </div>
     </div>
     <a th:href="@{/admin/users/{email}/edit (email=${user.email})}"
        class="btn btn-lg badge-success btn-block mb-4 col-sm-3">Edit</a>

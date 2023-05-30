@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
+        <tr th:each="user : ${userPage}">
             <td th:text="${user.id}"></td>
             <td><a th:href="@{/admin/users/{email} (email=${user.email})}" th:text="${user.email}"></a></td>
             <td th:text="${user.email}"></td>
@@ -37,6 +37,13 @@
         </tr>
         </tbody>
     </table>
+    <div th:if="${userPage.totalElements > 5}">
+        <div th:if="${userPage.totalPages > 0}" class="pagination"
+             th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/admin/users (size=${userPage.size}, page=${pageNumber})}" th:text="${pageNumber}"
+               th:class="${pageNumber==userPage.number + 1} ? active"></a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.example.app.service.dto;
 
+import com.example.app.model.Department;
 import com.example.app.model.Position;
 import com.example.app.model.Role;
 import jakarta.validation.constraints.Email;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -21,5 +23,5 @@ public class UpdateUserByAdminRequest {
     private String password;
     private Set<Role> roles;
     private Position position;
-    private String nameOfDepartment;
+    private List<Department> department;
 }

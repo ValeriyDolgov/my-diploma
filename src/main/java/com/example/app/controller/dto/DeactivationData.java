@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeactivationData {
-	private String confirmation;
+    private String confirmation;
 }

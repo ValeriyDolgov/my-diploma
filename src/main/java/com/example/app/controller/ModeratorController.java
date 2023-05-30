@@ -4,10 +4,16 @@ import com.example.app.model.Article;
 import com.example.app.service.ArticleService;
 import com.example.app.service.dto.UpdateArticleRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,9 +28,24 @@ public class ModeratorController {
     }
 
     @GetMapping("/notModerated")
-    public String showNotModeratedArticles(Model model) {
-        model.addAttribute("listOfArticles", articleService.showNotModeratedArticles());
-        model.addAttribute("numberOfArticles", articleService.showNotModeratedArticles().size());
+    public String showNotModeratedArticles(
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size,
+            Model model) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(5);
+
+        Page<Article> articlePage = articleService.showNotModeratedArticles(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("articlePage", articlePage);
+
+        int totalPages = articlePage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .toList();
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
         return "moderator/not-moderated-list";
     }
 
@@ -48,10 +69,24 @@ public class ModeratorController {
     }
 
     @GetMapping("/moderated")
-    public String showModeratedArticles(Model model) {
-        var listOfModeratedArticles = articleService.showModeratedAndNotPublishedArticles();
-        model.addAttribute("listOfArticles", listOfModeratedArticles);
-        model.addAttribute("numberOfArticles", listOfModeratedArticles.size());
+    public String showModeratedArticles(
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size,
+            Model model) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(5);
+
+        Page<Article> articlePage = articleService.showModeratedAndNotPublishedArticles(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("articlePage", articlePage);
+
+        int totalPages = articlePage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .toList();
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
         return "moderator/moderated-list";
     }
 
