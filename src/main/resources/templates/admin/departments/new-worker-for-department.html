@@ -6,8 +6,7 @@
 <body>
 <div th:insert="~{navbar-admin}"></div>
 <div class="container">
-    <form th:action="@{/admin/departments/{departmentName}/newWorker (departmentName=${departmentName})}" method="POST"
-          class="form-control mb-4" novalidate>
+    <form th:action="@{/admin/departments/{departmentName}/newWorker (departmentName=${departmentName})}" method="POST">
         <h2 class="form-signin-heading">Add new worker to department</h2>
         <p>
             <label for="emailOfWorker" class="sr-only">Enter email of new worker</label>

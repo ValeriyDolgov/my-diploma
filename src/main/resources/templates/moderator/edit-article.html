@@ -6,7 +6,7 @@
 <body>
 <div th:insert="~{navbar-moderator}"></div>
 <div class="container">
-    <form class="form-control mb-4" action="#"
+    <form action="#"
           th:action="@{/moderator/notModerated/{slug}/edit (slug=${article.slug})}"
           th:object="${article}"
           method="post">
