@@ -12,5 +12,6 @@ public enum Position {
     ProjectManager,
     MainBookkeeper,
     CTO,
-    Lawyer
+    Lawyer,
+    None
 }

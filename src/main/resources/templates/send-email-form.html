@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_fragments.html :: head ('Restore password')}">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <form class="user-form" action="#" th:action="@{/sendEmail}" th:object="${emailSendRequest}" method="POST">
+        <label>
+            Email
+            <input type="text" th:field="*{recipient}" placeholder="Your email" class="form-control mb-4" required/>
+        </label>
+        <button type="submit" class="btn btn-info col-2.5">Send email</button>
+    </form>
+</div>
+</body>
+</html>

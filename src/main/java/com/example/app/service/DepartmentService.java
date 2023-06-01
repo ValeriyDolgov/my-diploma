@@ -1,6 +1,7 @@
 package com.example.app.service;
 
 import com.example.app.model.Department;
+import com.example.app.model.Position;
 import com.example.app.model.User;
 import com.example.app.repository.DepartmentRepository;
 import com.example.app.repository.UserRepository;
@@ -38,7 +39,7 @@ public class DepartmentService {
         List<User> departmentWorkers = department.getWorkers();
         var user = userService.getByEmail(emailOfWorker);
         List<Department> userDepartments = user.getDepartments();
-        if (!user.getIsCEO() && user.getActive()) {
+        if (!user.getEmployee().getPosition().equals(Position.CEO) && user.getActive()) {
             if (!departmentWorkers.contains(user)) {
                 departmentWorkers.add(user);
                 department.setWorkers(departmentWorkers);

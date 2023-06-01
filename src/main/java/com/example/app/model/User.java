@@ -43,8 +43,6 @@ public class User implements UserDetails {
     private String resetPasswordToken;
     @Column(name = "nickname")
     private String nickname;
-    @Column(name = "is_ceo")
-    private Boolean isCEO;
     @Column(name = "is_active")
     private Boolean active;
     private Set<Role> roles = new HashSet<>();

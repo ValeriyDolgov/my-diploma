@@ -25,8 +25,8 @@ public class SecurityConfig {
                 .csrf()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/register", "/css/**", "/user/assets/**", "/user/webjars/**",
-                        "/assets/**").permitAll()
+                .requestMatchers("/", "/register", "/sendEmail", "/restorePassword/**", "/css/**",
+                        "/user/assets/**", "/user/webjars/**", "/assets/**").permitAll()
                 .requestMatchers("/actuator/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()

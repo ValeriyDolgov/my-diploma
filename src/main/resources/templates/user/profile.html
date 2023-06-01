@@ -5,7 +5,12 @@
 </head>
 <body>
 <div th:insert="~{navbar-user}"></div>
+<br>
 <div class="container">
+    <p>
+        <a th:href="@{/user/all}"
+           class="btn btn-lg btn-primary btn-block col-sm-3">Get list of all users</a>
+    </p>
     <h1>User details: <span th:text="${user.email}"></span></h1>
     <div>
         <div class="profile-text">

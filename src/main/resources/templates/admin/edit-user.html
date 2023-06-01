@@ -36,7 +36,7 @@
                 <option th:each="value : ${positions}" th:value="${value}" th:text="${value}"></option>
             </select>
         </label>
-        <label th:if="${user.isCEO == false}">
+        <label th:if="*{employee.position.toString() != 'CEO'}">
             Department
             <select th:field="*{departments}">
                 <option th:each="entity : ${departments}" th:value="${entity.id}"

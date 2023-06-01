@@ -7,21 +7,47 @@
 <div class="container">
     <form class="user-form" action="#" th:action="@{/register}" th:object="${registrationData}" method="POST">
         <h2 class="user-form-header">New user registration</h2>
-        <input type="text" th:field="*{surname}" placeholder="Surname" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{patronymic}" placeholder="Patronymic" class="form-control mb-4 col-10"/>
-        <input type="date" th:field="*{birthday}" placeholder="Birthday" class="form-control mb-4 col-10"/>
+        <label>
+            <input type="text" th:field="*{surname}" placeholder="Surname" class="form-control mb-4 col-10" required/>
+        </label>
+        <label>
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-10" required/>
+        </label>
+        <label>
+            <input type="text" th:field="*{patronymic}" placeholder="Patronymic" class="form-control mb-4 col-10"/>
+        </label>
+        <label>
+            <input type="date" th:field="*{birthday}" placeholder="Birthday" class="form-control mb-4 col-10" required/>
+            <br/>
+        </label>
         <select th:field="*{gender}" class="form-check mb-4 col-4">
             <option th:value="'MALE'" th:text="Male"></option>
             <option th:value="'FEMALE'" th:text="Female"></option>
         </select>
-        <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{phoneNum}" placeholder="Phone number" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{telegram}" placeholder="Telegram account name" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{skype}" placeholder="Skype account name" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{country}" placeholder="Country" class="form-control mb-4 col-10"/>
-        <input type="text" th:field="*{city}" placeholder="City" class="form-control mb-4 col-10"/>
+        <br/>
+        <label>
+            <input type="text" th:field="*{email}" placeholder="example.e@qazdevelop.com"
+                   class="form-control mb-4 col-15"
+                   required/>
+        </label>
+        <label>
+            <input type="text" th:field="*{phoneNum}" placeholder="Phone number" class="form-control mb-4"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{password}" placeholder="Password" class="form-control mb-4" required/>
+        </label>
+        <label>
+            <input type="text" th:field="*{telegram}" placeholder="Telegram account name" class="form-control mb-4 "/>
+        </label>
+        <label>
+            <input type="text" th:field="*{skype}" placeholder="Skype account name" class="form-control mb-4"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{country}" placeholder="Country" class="form-control mb-4 col-10"/>
+        </label>
+        <label>
+            <input type="text" th:field="*{city}" placeholder="City" class="form-control mb-4 col-10"/>
+        </label><br/>
         <button type="submit" class="btn btn-info col-2.5">Register</button>
     </form>
 </div>

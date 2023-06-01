@@ -12,10 +12,26 @@
         Hello: <span th:text="${#authentication.principal.username}"></span>. Have a nice day!
     </h1>
     <br>
-    <p>
-        <a th:href="@{/user/all}"
-           class="btn btn-lg btn-primary btn-block col-sm-3">Get list of all users</a>
-    </p>
+    <b>
+        Some rules and advices down there for you!
+        <li class="nav-item"></li>
+        Your profile will be able by
+        <button class="btn-dark text-white-50">Profile</button>
+        on top! <br>
+        To show all articles, you can press
+        <button class="btn-dark text-white-50">Articles</button>
+        on top! <br>
+        To see tree diagram of workers, press
+        <button class="btn-dark text-white-50">Tree of worker</button>
+        ! <br>
+        Top 5 users by count of articles opened by
+        <button class="btn-dark text-white-50">Top of active users</button>
+        ! <br>
+        To logout from system press
+        <button class="btn btn-dark btn-outline-danger my-2 my-sm-0">Logout</button>
+        !
+        <li class="nav-item"></li>
+    </b>
 </div>
 </body>
 </html>

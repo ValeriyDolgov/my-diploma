@@ -32,9 +32,11 @@ public class MappingUtils {
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .sex(String.valueOf(registerRequest.getGender()))
                 .resetPasswordToken(null)
-                .isCEO(false)
                 .roles(Set.of(Role.EMPLOYEE))
                 .active(true)
+                .country(registerRequest.getCountry())
+                .city(registerRequest.getCity())
+                .departments(null)
                 .build();
     }
 
@@ -50,6 +52,7 @@ public class MappingUtils {
                 .note(null)
                 .contactInfo(null)
                 .user(null)
+                .position(Position.None)
                 .build();
     }
 

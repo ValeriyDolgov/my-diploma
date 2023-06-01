@@ -1,8 +1,6 @@
 package com.example.app.service;
 
-import com.example.app.model.Article;
-import com.example.app.model.Department;
-import com.example.app.model.User;
+import com.example.app.model.*;
 import com.example.app.repository.*;
 import com.example.app.service.dto.Node;
 import com.example.app.service.dto.RegisterRequest;
@@ -44,6 +42,14 @@ public class UserService implements UserDetailsService {
     public User getByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(email));
+    }
+
+    public User getByResetPasswordToken(String token) {
+        return userRepository.findUserByResetPasswordToken(token);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     public List<User> findAllUsers() {
@@ -138,8 +144,12 @@ public class UserService implements UserDetailsService {
         if (Strings.isNotBlank(request.getPassword())) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
         }
-        user.getEmployee().setPosition(request.getPosition());
-        user.setDepartments(request.getDepartment());
+        if (employeeRepository.findEmployeeByPosition(Position.CEO) != null && request.getPosition().equals(Position.CEO)) {
+            user.getEmployee().setPosition(Position.None);
+        } else user.getEmployee().setPosition(request.getPosition());
+        if (request.getPosition().equals(Position.CEO) || request.getPosition().equals(Position.None)) {
+            user.setDepartments(null);
+        } else user.setDepartments(request.getDepartment());
         user.getEmployee().setDateOfUpdate(LocalDateTime.now());
         return user;
     }
@@ -170,7 +180,8 @@ public class UserService implements UserDetailsService {
 
     public List<Node> getListOfNodesForWorkerTree() {
         List<Node> nodes = new ArrayList<>();
-        User ceo = userRepository.findUserByIsCEOIsTrue();
+        Employee employee = employeeRepository.findEmployeeByPosition(Position.CEO);
+        User ceo = employee.getUser();
         nodes.add(new Node("CEO", "0", "CEO", ceo.getEmail()));
         List<Department> departmentList = departmentRepository.findAll();
         for (Department department : departmentList) {
