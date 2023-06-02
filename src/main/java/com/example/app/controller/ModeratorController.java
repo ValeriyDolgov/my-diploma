@@ -2,6 +2,7 @@ package com.example.app.controller;
 
 import com.example.app.model.Article;
 import com.example.app.service.ArticleService;
+import com.example.app.service.UserService;
 import com.example.app.service.dto.UpdateArticleRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +20,7 @@ import java.util.stream.IntStream;
 @PreAuthorize(value = "hasAuthority('MODERATOR')")
 public class ModeratorController {
     private final ArticleService articleService;
+    private final UserService userService;
 
     @GetMapping
     public String mainPage() {
@@ -38,14 +38,7 @@ public class ModeratorController {
         Page<Article> articlePage = articleService.showNotModeratedArticles(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("articlePage", articlePage);
-
-        int totalPages = articlePage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .toList();
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        model.addAttribute("pageNumbers", userService.getListOfPageNumbersForPagination(articlePage));
         return "moderator/not-moderated-list";
     }
 
@@ -79,14 +72,7 @@ public class ModeratorController {
         Page<Article> articlePage = articleService.showModeratedAndNotPublishedArticles(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("articlePage", articlePage);
-
-        int totalPages = articlePage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .toList();
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        model.addAttribute("pageNumbers", userService.getListOfPageNumbersForPagination(articlePage));
         return "moderator/moderated-list";
     }
 

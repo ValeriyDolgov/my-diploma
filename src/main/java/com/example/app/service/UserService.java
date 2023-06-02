@@ -110,25 +110,7 @@ public class UserService implements UserDetailsService {
 
     public User updateUser(String login, UpdateUserRequest updateUserRequest) {
         var user = getByEmail(login);
-        user.setSurname(updateUserRequest.getSurname());
-        user.setName(updateUserRequest.getName());
-        user.setPatronymic(updateUserRequest.getPatronymic());
-        if (updateUserRequest.getBirthday() != null) {
-            user.setBirthday(updateUserRequest.getBirthday());
-        }
-        if (Strings.isNotBlank(updateUserRequest.getPassword())) {
-            user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
-        }
-        user.getEmployee().setDateOfUpdate(LocalDateTime.now());
-        user.setSex(String.valueOf(updateUserRequest.getGender()));
-        user.setCountry(updateUserRequest.getCountry());
-        user.setCity(updateUserRequest.getCity());
-        user.getEmployee().getContactInfo().setPersonalNumber(updateUserRequest.getPhoneNumber());
-        user.getEmployee().getContactInfo().setTelegramAccount(updateUserRequest.getTelegramAccount());
-        user.getEmployee().getContactInfo().setSkypeAccount(updateUserRequest.getSkypeAccount());
-        user.setCountry(updateUserRequest.getCountry());
-        user.setCity(updateUserRequest.getCity());
-        return user;
+        return mappingUtils.mapUserFromUpdateUserRequest(user, updateUserRequest);
     }
 
     public User updateUserByAdmin(String email, UpdateUserByAdminRequest request) {
@@ -169,8 +151,8 @@ public class UserService implements UserDetailsService {
         return articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrueAndAuthor(user);
     }
 
-    public List<Integer> getListOfPageNumbersForPagination(Page userPage) {
-        int totalPages = userPage.getTotalPages();
+    public List<Integer> getListOfPageNumbersForPagination(Page page) {
+        int totalPages = page.getTotalPages();
         if (totalPages > 0) {
             return IntStream.rangeClosed(1, totalPages)
                     .boxed()

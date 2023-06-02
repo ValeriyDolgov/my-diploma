@@ -13,7 +13,6 @@ CREATE TABLE "users"
     "reset_password_token" varchar,
     "nickname"             varchar,
     "is_active"            boolean,
-    "is_ceo"               boolean,
     "roles"                varchar(2048),
     "employee_id"          bigint
 );

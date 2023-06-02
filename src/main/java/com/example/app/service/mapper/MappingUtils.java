@@ -3,8 +3,10 @@ package com.example.app.service.mapper;
 import com.example.app.model.*;
 import com.example.app.service.dto.ArticleRequest;
 import com.example.app.service.dto.RegisterRequest;
+import com.example.app.service.dto.UpdateUserRequest;
 import com.github.slugify.Slugify;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,28 @@ public class MappingUtils {
                 .user(null)
                 .position(Position.None)
                 .build();
+    }
+
+    public User mapUserFromUpdateUserRequest(User user, UpdateUserRequest updateUserRequest) {
+        user.setSurname(updateUserRequest.getSurname());
+        user.setName(updateUserRequest.getName());
+        user.setPatronymic(updateUserRequest.getPatronymic());
+        if (updateUserRequest.getBirthday() != null) {
+            user.setBirthday(updateUserRequest.getBirthday());
+        }
+        if (Strings.isNotBlank(updateUserRequest.getPassword())) {
+            user.setPassword(passwordEncoder.encode(updateUserRequest.getPassword()));
+        }
+        user.getEmployee().setDateOfUpdate(LocalDateTime.now());
+        user.setSex(String.valueOf(updateUserRequest.getGender()));
+        user.setCountry(updateUserRequest.getCountry());
+        user.setCity(updateUserRequest.getCity());
+        user.getEmployee().getContactInfo().setPersonalNumber(updateUserRequest.getPhoneNumber());
+        user.getEmployee().getContactInfo().setTelegramAccount(updateUserRequest.getTelegramAccount());
+        user.getEmployee().getContactInfo().setSkypeAccount(updateUserRequest.getSkypeAccount());
+        user.setCountry(updateUserRequest.getCountry());
+        user.setCity(updateUserRequest.getCity());
+        return user;
     }
 
     public ContactInfo mapToContactInfoFromRegisterRequest(RegisterRequest registerRequest) {

@@ -37,7 +37,7 @@ public class ArticleService {
     }
 
     public Page<Article> findAllPageableArticles(Pageable pageable) {
-        List<Article> articles = articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
+        List<Article> articles = articleRepository.findAllByIsModeratedIsTrueAndIsPublishedIsTrueOrderByDateOfCreationDesc();
         return findPaginated(pageable, articles);
     }
 

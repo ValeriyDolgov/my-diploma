@@ -18,7 +18,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsFalse();
 
-    List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsTrue();
+    List<Article> findAllByIsModeratedIsTrueAndIsPublishedIsTrueOrderByDateOfCreationDesc();
 
     Article getArticleByTitle(String title);
 

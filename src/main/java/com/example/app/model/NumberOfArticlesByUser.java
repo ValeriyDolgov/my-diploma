@@ -1,4 +1,4 @@
-package com.example.app.service.dto;
+package com.example.app.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
